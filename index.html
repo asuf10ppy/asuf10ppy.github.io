@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aditya S Uranakar | Embedded systems and low-level security</title>
+<meta name="description" content="Freshman CSE at IIIT Bangalore building ESP32 and Arduino projects and exploring OS internals and low-level security.">
+<meta property="og:title" content="Aditya S Uranakar"><meta property="og:description" content="Embedded systems, OS internals and low-level security.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07100c;--panel:#0d1a14;--line:#1f3d2e;--text:#d6eadf;--mute:#86a393;--g:#3dff8a;--amber:#ffb347;--mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;--sans:'IBM Plex Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font:16px/1.65 var(--sans);background-image:linear-gradient(rgba(61,255,138,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(61,255,138,.045) 1px,transparent 1px);background-size:32px 32px}
+a{color:var(--g);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--g);outline-offset:3px}
+main{max-width:1040px;margin:0 auto;padding:40px 20px 60px}
+section{padding-top:64px}
+h2{font:700 1.15rem var(--mono);color:var(--g);margin-bottom:20px}h2::before{content:"~/";color:var(--mute)}
+h3{font:700 1rem var(--mono);color:#fff}
+.mute{color:var(--mute);font-size:.9rem}
+.hero{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
+#photo{width:170px;height:170px;border-radius:50%;object-fit:cover;border:2px solid var(--g);box-shadow:0 0 30px rgba(61,255,138,.25)}
+.term{background:var(--panel);border:1px solid var(--line);border-radius:6px;font:14px/1.8 var(--mono);box-shadow:0 0 50px rgba(61,255,138,.08)}
+.bar{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line)}.bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.tb{padding:18px 22px;min-height:290px}
+.p{color:var(--g)}.out{margin:2px 0 12px 18px;color:var(--text)}
+.name{font:700 clamp(1.7rem,5vw,2.9rem)/1.15 var(--mono);color:#fff}
+.links a{margin-right:16px;display:inline-block}
+.cur{display:inline-block;width:.6em;height:1.1em;background:var(--g);vertical-align:-.2em;animation:b 1s steps(2) infinite}
+@keyframes b{50%{opacity:0}}
+.js .ln,.js .out{display:none}
+.grid{display:grid;gap:16px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:18px 20px;color:inherit;display:block}
+a.card:hover{border-color:var(--g);text-decoration:none}
+.big{font:700 2.4rem/1.1 var(--mono);color:var(--g)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.tags span{font:12px var(--mono);border:1px solid var(--line);padding:1px 8px;border-radius:3px;color:var(--mute)}
+.wide{grid-column:1/-1;border-left:3px solid var(--g)}
+.next{color:var(--amber);font-size:.9rem;margin-top:8px}
+.vids{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.vids img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:3px;display:block;margin-bottom:10px;border:1px solid var(--line)}
+.vids .t{font-size:.92rem;line-height:1.4}
+ul.l{list-style:none;padding:0}ul.l li{padding:8px 0;border-bottom:1px solid var(--line)}ul.l li:last-child{border:0}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line)}
+@media(max-width:760px){.hero{grid-template-columns:1fr}#photo{order:-1;width:120px;height:120px}.g3,.g2{grid-template-columns:1fr}section{padding-top:48px}.tb{min-height:340px}}
+@media(prefers-reduced-motion:reduce){.cur{animation:none}}
+</style></head>
+<body><main>
+<header class="hero">
+ <div class="term"><div class="bar"><i></i><i></i><i></i></div><div class="tb">
+  <div class="ln"><span class="p">$</span> <span class="cmd">whoami</span></div>
+  <div class="out"><h1 class="name">Aditya S Uranakar</h1></div>
+  <div class="ln"><span class="p">$</span> <span class="cmd">cat focus.txt</span></div>
+  <div class="out">Freshman CSE at IIIT Bangalore<br>Embedded systems, OS internals, low-level security<br>C, ESP32, IoT</div>
+  <div class="ln"><span class="p">$</span> <span class="cmd">ls links</span></div>
+  <div class="out links"><a href="https://www.linkedin.com/in/asuf10ppy/">linkedin</a><a href="https://github.com/asuf10ppy">github</a><a href="https://www.youtube.com/@asuf10ppy">youtube</a><a href="mailto:adityaurank410@gmail.com">email</a></div>
+  <div><span class="p">$</span> <span class="cur"></span></div>
+ </div></div>
+ <img id="photo" src="photo.jpg" alt="Aditya S Uranakar" hidden onload="this.hidden=false">
+</header>
+
+<section><h2>stats</h2>
+ <div class="grid g3">
+  <a class="card" href="https://leetcode.com/u/asuf10ppy/"><div class="big" id="lc">&mdash;</div><div>LeetCode problems solved</div><div class="mute" id="lc2"></div></a>
+  <a class="card" href="https://codeforces.com/profile/asuf10ppy"><div class="big" id="cf">&mdash;</div><div>Codeforces rating</div><div class="mute" id="cf2"></div></a>
+  <a class="card" href="https://tryhackme.com/p/asuf10ppy"><div class="big" id="thm">&mdash;</div><div>TryHackMe rank</div><div class="mute" id="thm2"></div></a>
+ </div>
+</section>
+
+<section><h2>latest-videos</h2>
+ <div class="grid vids" id="vids"><p class="mute">Loading videos. <a href="https://www.youtube.com/@asuf10ppy">Open the channel</a>.</p></div>
+</section>
+
+<section><h2>projects</h2>
+ <div class="grid g2">
+  <article class="card wide"><h3>Live Lyrics Display (ESP8266)</h3><div class="mute">Sep 2026 to now</div>
+   <p>Shows synced lyrics of the song playing on my Mac (Apple Music or YouTube Music) on an LCD. A Mac-side script reads the current track and streams lyrics over Wi-Fi. Long lines auto-scroll, an idle mode shows a clock, songs change with an animation, and the settings page is hosted on the ESP itself.</p>
+   <div class="next">Planned next: an LED strip music visualizer.</div><div class="tags"><span>ESP8266</span><span>Wi-Fi</span><span>LCD</span></div></article>
+  <article class="card"><h3>ESP32 Smart Room</h3><div class="mute">Oct 2026</div>
+   <p>Lights, sockets and a fan work from the original wall switches and from a phone, including Google Home and Assistant. Both paths stay in sync, so a manual flip never leaves the app showing the wrong state. Runs 24/7 with no paid cloud subscription.</p>
+   <div class="tags"><span>ESP32</span><span>relays</span><span>IoT</span></div></article>
+  <article class="card"><h3>Dual-Axis Solar Tracker</h3><div class="mute">Jun to Nov 2022</div>
+   <p>An Arduino compares light across LDRs and adjusts the panel on two axes to stay square to the sun, harvesting more energy than a static mount.</p>
+   <div class="tags"><span>Arduino</span><span>LDR</span></div></article>
+  <article class="card"><h3>IoT Smart Irrigation</h3><div class="mute">Jun 2021 to Nov 2022</div>
+   <p>An ESP8266 reads soil moisture and starts the pump when it drops below a threshold. A mobile dashboard gives remote monitoring and manual control.</p>
+   <div class="tags"><span>ESP8266</span><span>sensors</span><span>IoT</span></div></article>
+  <article class="card"><h3>Smart Assistive Blind Stick</h3><div class="mute">Jun to Nov 2022</div>
+   <p>An Arduino and ultrasonic sensors detect obstacles and warn the user with haptic vibration and a buzzer.</p>
+   <div class="tags"><span>Arduino</span><span>ultrasonic</span></div></article>
+ </div>
+</section>
+
+<section><h2>about</h2>
+ <p style="max-width:70ch">I like understanding how systems work beneath the surface: embedded hardware, operating systems and low-level security. I learn by building, from an IoT irrigation system and a dual-axis solar tracker to an ESP32 smart room that runs around the clock. Right now I am exploring OS and kernel security through Gene/sys and the business side of tech through E-Cell. Open to internships, research and collaborations in embedded and systems security.</p>
+</section>
+
+<section><h2>involvement</h2>
+ <div class="grid g2">
+  <div class="card"><h3>Gene/sys, IIIT Bangalore</h3><div class="mute">Tech member, general track, Sep 2026 to now</div><p>Low-level computing and cybersecurity: operating systems, kernel concepts and systems programming.</p></div>
+  <div class="card"><h3>E-Cell, IIIT-B</h3><div class="mute">Sponsorship and outreach, Sep 2026 to now</div><p>Finding potential corporate partners and researching sponsorship opportunities.</p></div>
+ </div>
+</section>
+
+<section><h2>achievements</h2>
+ <ul class="l">
+  <li><b>1st prize, Summer School in Electronics &amp; Computers (SUSIEC-2023).</b> IETE Bengaluru Centre, May 2023. Won an electronics quiz and a project exhibition.</li>
+  <li><b>1st prize, World Science Day 2022 project exhibition.</b> Sambhram Institute of Technology, Nov 2022.</li>
+  <li><b>Nurture IGNITO science exhibitions.</b> Represented BEL School in Jan 2022 and Jan 2023, with certificates of appreciation.</li>
+ </ul>
+</section>
+
+<section><h2>education</h2>
+ <ul class="l">
+  <li><b>IIIT Bangalore</b>, B.Tech in Computer Science and Engineering, 2026 to 2030</li>
+  <li><b>Narayana PU College</b>, 2nd PUC (PCMC), 97.5%, 2024 to 2026</li>
+  <li><b>BEL School CBSE</b>, 93.4%, 2014 to 2024</li>
+ </ul>
+</section>
+
+<section><h2>contact</h2>
+ <p>Want to build something or talk internships? <a href="mailto:adityaurank410@gmail.com">adityaurank410@gmail.com</a></p>
+ <p class="links" style="margin-top:8px"><a href="https://www.linkedin.com/in/asuf10ppy/">LinkedIn</a><a href="https://github.com/asuf10ppy">GitHub</a><a href="https://www.youtube.com/@asuf10ppy">YouTube</a></p>
+</section>
+<footer class="mute">Stats refresh daily. Last update: <span id="upd">not yet</span></footer>
+</main>
+<script>
+document.documentElement.classList.add('js');
+const $=s=>document.querySelector(s),rm=matchMedia('(prefers-reduced-motion:reduce)').matches,sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function boot(){
+ const ln=[...document.querySelectorAll('.ln')],out=[...document.querySelectorAll('.out')];
+ for(let i=0;i<ln.length;i++){
+  ln[i].style.display='block';const c=ln[i].querySelector('.cmd'),t=c.textContent;
+  if(!rm){c.textContent='';for(const ch of t){c.textContent+=ch;await sleep(55)}await sleep(200)}
+  out[i].style.display='block';if(!rm)await sleep(350);
+ }
+}
+function count(el,v){
+ if(typeof v!=='number'){el.textContent=v??'\u2014';return}
+ if(rm){el.textContent=v.toLocaleString();return}
+ const t0=performance.now();(function f(t){const k=Math.min((t-t0)/1200,1);el.textContent=Math.round(v*(1-Math.pow(1-k,3))).toLocaleString();if(k<1)requestAnimationFrame(f)})(t0);
+}
+async function stats(){
+ try{
+  const s=await (await fetch('stats.json?'+Date.now())).json(),lc=s.leetcode||{},cf=s.codeforces||{},th=s.tryhackme||{};
+  count($('#lc'),lc.solved);
+  if(lc.easy!=null)$('#lc2').textContent=`${lc.easy} easy, ${lc.medium} medium, ${lc.hard} hard`;
+  count($('#cf'),cf.rating??'unrated');
+  $('#cf2').textContent=[cf.rank,cf.maxRating?'max '+cf.maxRating:'',cf.solved!=null?cf.solved+' solved':''].filter(Boolean).join(', ');
+  count($('#thm'),th.rank);
+  $('#thm2').textContent=[th.rooms!=null?th.rooms+' rooms':'',th.badges!=null?th.badges+' badges':''].filter(Boolean).join(', ');
+  if(s.updated)$('#upd').textContent=new Date(s.updated).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
+  const v=$('#vids');
+  if(s.youtube&&s.youtube.length){
+   v.innerHTML='';
+   s.youtube.forEach(y=>{
+    const a=document.createElement('a');a.className='card';a.href='https://www.youtube.com/watch?v='+encodeURIComponent(y.id);
+    const im=document.createElement('img');im.loading='lazy';im.alt='';im.src='https://i.ytimg.com/vi/'+encodeURIComponent(y.id)+'/hqdefault.jpg';
+    const t=document.createElement('div');t.className='t';t.textContent=y.title;
+    const d=document.createElement('div');d.className='mute';d.textContent=y.published||'';
+    a.append(im,t,d);v.append(a);
+   });
+  }
+ }catch(e){console.warn('stats.json not loaded',e)}
+}
+boot();stats();
+</script></body></html>
