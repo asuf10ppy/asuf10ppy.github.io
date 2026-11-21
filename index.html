@@ -3,6 +3,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Aditya S Uranakar | Embedded systems and low-level security</title>
 <meta name="description" content="Freshman CSE at IIIT Bangalore building ESP32 and Arduino projects and exploring OS internals and low-level security.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://asuf10ppy.github.io/"><meta property="og:image" content="https://asuf10ppy.github.io/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://asuf10ppy.github.io/og-image.png">
 <meta property="og:title" content="Aditya S Uranakar"><meta property="og:description" content="Embedded systems, OS internals and low-level security.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
@@ -42,6 +43,19 @@ ul.l{list-style:none;padding:0}ul.l li{padding:8px 0;border-bottom:1px solid var
 footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line)}
 @media(max-width:760px){.hero{grid-template-columns:1fr}#photo{order:-1;width:120px;height:120px}.g3,.g2{grid-template-columns:1fr}section{padding-top:48px}.tb{min-height:340px}}
 @media(prefers-reduced-motion:reduce){.cur{animation:none}}
+.js .live{display:none;margin-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px 18px}
+.chips button{font:12px var(--mono);background:transparent;color:var(--g);border:1px solid var(--line);border-radius:3px;padding:4px 10px;cursor:pointer}
+.chips button:hover{border-color:var(--g)}
+#tf{display:flex;gap:8px;align-items:center}
+#ti{flex:1;min-width:0;background:transparent;border:0;outline:0;color:var(--text);font:14px var(--mono);caret-color:var(--g)}
+#tout .o{margin:0 0 2px 18px}
+details{margin-top:12px;border-top:1px solid var(--line);padding-top:8px}
+summary{cursor:pointer;font:13px var(--mono);color:var(--g)}
+.dg{overflow-x:auto;margin-top:10px}.dg svg{min-width:620px;width:100%;height:auto}
+pre{background:#050c09;border:1px solid var(--line);border-radius:4px;padding:12px;overflow-x:auto;margin-top:10px;font:12px/1.5 var(--mono)}
+.pt{fill:#0d1a14;stroke:#2a5a43}.pn{fill:#fff;font:700 12px var(--mono)}.pl{fill:#86a393;font:11px var(--mono)}.dot{fill:#3dff8a}
+.w{fill:none;stroke-width:2}.w.p{stroke:#ff6b6b}.w.g{stroke:#86a393}.w.s{stroke:#3dff8a}
 </style></head>
 <body><main>
 <header class="hero">
@@ -51,8 +65,8 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line)}
   <div class="ln"><span class="p">$</span> <span class="cmd">cat focus.txt</span></div>
   <div class="out">Freshman CSE at IIIT Bangalore<br>Embedded systems, OS internals, low-level security<br>C, ESP32, IoT</div>
   <div class="ln"><span class="p">$</span> <span class="cmd">ls links</span></div>
-  <div class="out links"><a href="https://www.linkedin.com/in/asuf10ppy/">linkedin</a><a href="https://github.com/asuf10ppy">github</a><a href="https://www.youtube.com/@asuf10ppy">youtube</a><a href="mailto:adityaurank410@gmail.com">email</a></div>
-  <div><span class="p">$</span> <span class="cur"></span></div>
+  <div class="out links"><a href="https://www.linkedin.com/in/asuf10ppy/">linkedin</a><a href="https://github.com/asuf10ppy">github</a><a href="https://www.youtube.com/@asuf10ppy">youtube</a><a href="resume.pdf">resume</a><a href="mailto:adityaurank410@gmail.com">email</a></div>
+  <div class="live" id="live"><div class="chips" id="chips"></div><div id="tout"></div><form id="tf" autocomplete="off"><span class="p">$</span><input id="ti" aria-label="Type a command" placeholder="type a command, try help" autocapitalize="off" spellcheck="false"></form></div>
  </div></div>
  <img id="photo" src="photo.jpg" alt="Aditya S Uranakar" hidden onload="this.hidden=false">
 </header>
@@ -70,23 +84,12 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line)}
 </section>
 
 <section><h2>projects</h2>
- <div class="grid g2">
-  <article class="card wide"><h3>Live Lyrics Display (ESP8266)</h3><div class="mute">Sep 2026 to now</div>
-   <p>Shows synced lyrics of the song playing on my Mac (Apple Music or YouTube Music) on an LCD. A Mac-side script reads the current track and streams lyrics over Wi-Fi. Long lines auto-scroll, an idle mode shows a clock, songs change with an animation, and the settings page is hosted on the ESP itself.</p>
-   <div class="next">Planned next: an LED strip music visualizer.</div><div class="tags"><span>ESP8266</span><span>Wi-Fi</span><span>LCD</span></div></article>
-  <article class="card"><h3>ESP32 Smart Room</h3><div class="mute">Oct 2026</div>
-   <p>Lights, sockets and a fan work from the original wall switches and from a phone, including Google Home and Assistant. Both paths stay in sync, so a manual flip never leaves the app showing the wrong state. Runs 24/7 with no paid cloud subscription.</p>
-   <div class="tags"><span>ESP32</span><span>relays</span><span>IoT</span></div></article>
-  <article class="card"><h3>Dual-Axis Solar Tracker</h3><div class="mute">Jun to Nov 2022</div>
-   <p>An Arduino compares light across LDRs and adjusts the panel on two axes to stay square to the sun, harvesting more energy than a static mount.</p>
-   <div class="tags"><span>Arduino</span><span>LDR</span></div></article>
-  <article class="card"><h3>IoT Smart Irrigation</h3><div class="mute">Jun 2021 to Nov 2022</div>
-   <p>An ESP8266 reads soil moisture and starts the pump when it drops below a threshold. A mobile dashboard gives remote monitoring and manual control.</p>
-   <div class="tags"><span>ESP8266</span><span>sensors</span><span>IoT</span></div></article>
-  <article class="card"><h3>Smart Assistive Blind Stick</h3><div class="mute">Jun to Nov 2022</div>
-   <p>An Arduino and ultrasonic sensors detect obstacles and warn the user with haptic vibration and a buzzer.</p>
-   <div class="tags"><span>Arduino</span><span>ultrasonic</span></div></article>
- </div>
+ <p class="mute" style="margin:-8px 0 16px">Wiring diagrams and code are reference designs written from the project descriptions. Pins and parts may differ from the original builds.</p>
+ <div class="grid g2" id="projects"></div>
+</section>
+
+<section><h2>skills</h2>
+ <div class="grid g2" id="skills"></div>
 </section>
 
 <section><h2>about</h2>
@@ -118,10 +121,11 @@ footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line)}
 
 <section><h2>contact</h2>
  <p>Want to build something or talk internships? <a href="mailto:adityaurank410@gmail.com">adityaurank410@gmail.com</a></p>
- <p class="links" style="margin-top:8px"><a href="https://www.linkedin.com/in/asuf10ppy/">LinkedIn</a><a href="https://github.com/asuf10ppy">GitHub</a><a href="https://www.youtube.com/@asuf10ppy">YouTube</a></p>
+ <p class="links" style="margin-top:8px"><a href="https://www.linkedin.com/in/asuf10ppy/">LinkedIn</a><a href="https://github.com/asuf10ppy">GitHub</a><a href="https://www.youtube.com/@asuf10ppy">YouTube</a><a href="resume.pdf">Resume (PDF)</a></p>
 </section>
 <footer class="mute">Stats refresh daily. Last update: <span id="upd">not yet</span></footer>
 </main>
+<script src="projects.js"></script>
 <script>
 document.documentElement.classList.add('js');
 const $=s=>document.querySelector(s),rm=matchMedia('(prefers-reduced-motion:reduce)').matches,sleep=ms=>new Promise(r=>setTimeout(r,ms));
@@ -132,6 +136,7 @@ async function boot(){
   if(!rm){c.textContent='';for(const ch of t){c.textContent+=ch;await sleep(55)}await sleep(200)}
   out[i].style.display='block';if(!rm)await sleep(350);
  }
+ $('#live').style.display='block';run('help');
 }
 function count(el,v){
  if(typeof v!=='number'){el.textContent=v??'\u2014';return}
@@ -140,7 +145,7 @@ function count(el,v){
 }
 async function stats(){
  try{
-  const s=await (await fetch('stats.json?'+Date.now())).json(),lc=s.leetcode||{},cf=s.codeforces||{},th=s.tryhackme||{};
+  const s=S=await (await fetch('stats.json?'+Date.now())).json(),lc=s.leetcode||{},cf=s.codeforces||{},th=s.tryhackme||{};
   count($('#lc'),lc.solved);
   if(lc.easy!=null)$('#lc2').textContent=`${lc.easy} easy, ${lc.medium} medium, ${lc.hard} hard`;
   count($('#cf'),cf.rating??'unrated');
@@ -161,5 +166,53 @@ async function stats(){
   }
  }catch(e){console.warn('stats.json not loaded',e)}
 }
+let S={},SKILLS={};
+const A=(t,h)=>{const a=document.createElement('a');a.textContent=t;a.href=h;return a};
+function diagram(d){
+ const X=[10,270,540],W=[130,140,130],R=22,P={},cy=[10,10,10];let g='',w='';
+ d.parts.forEach((p,k)=>{
+  const c=p.c,isL=s=>c==2||s[0]=='<',nl=p.pins.filter(isL).length,h=Math.max(nl,p.pins.length-nl,1)*R+30,y=cy[c];cy[c]+=h+18;
+  g+=`<rect class="pt" x="${X[c]}" y="${y}" width="${W[c]}" height="${h}" rx="4"/><text class="pn" x="${X[c]+W[c]/2}" y="${y+17}" text-anchor="middle">${p.n}</text>`;
+  let a=0,b=0;
+  p.pins.forEach(s=>{const L=isL(s),i=L?a++:b++,x=L?X[c]:X[c]+W[c],yy=y+36+i*R;P[k+'|'+s]=[x,yy];
+   g+=`<circle class="dot" cx="${x}" cy="${yy}" r="3.5"/><text class="pl" x="${x+(L?8:-8)}" y="${yy+4}" text-anchor="${L?'start':'end'}">${s.replace('<','')}</text>`});
+ });
+ d.wires.forEach((e,i)=>{const a=P[e[0]+'|'+e[1]],b=P[e[2]+'|'+e[3]],m=a[0]+(b[0]-a[0])*(.3+.13*(i%4));
+  w+=`<path class="w ${e[4]}" d="M${a[0]} ${a[1]}H${m}V${b[1]}H${b[0]}"/>`});
+ return `<svg viewBox="0 0 680 ${Math.max(...cy)}" role="img" aria-label="Wiring diagram">${w}${g}</svg>`;
+}
+function renderProjects(){
+ const box=$('#projects');
+ PROJECTS.forEach((p,i)=>{
+  const a=document.createElement('article');a.className='card'+(i?'':' wide');a.id=p.id;
+  a.innerHTML=`<h3>${p.title}</h3><div class="mute">${p.date}</div><p>${p.desc}</p>${p.next?`<div class="next">${p.next}</div>`:''}<div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div><details><summary>Circuit diagram</summary><div class="dg">${diagram(p.d)}</div><p class="mute">${p.note}</p></details><details><summary>Reference code (${p.file})</summary><pre><code></code></pre></details>`;
+  a.querySelector('code').textContent=p.code;box.append(a);
+ });
+}
+if(typeof PROJECTS!=='undefined')renderProjects();
+fetch('skills.json').then(r=>r.json()).then(k=>{SKILLS=k;const b=$('#skills');
+ Object.entries(k).forEach(([g,v])=>{const c=document.createElement('div');c.className='card';const h=document.createElement('h3');h.textContent=g;const t=document.createElement('div');t.className='tags';
+  v.forEach(s=>{const e=document.createElement('span');e.textContent=s;t.append(e)});c.append(h,t);b.append(c)})}).catch(()=>{});
+const ABOUT='Freshman CSE at IIIT Bangalore. I learn by building: ESP32 and ESP8266 projects, Arduino robots, and now OS and kernel security through Gene/sys. Open to internships and research in embedded and systems security.';
+const CM={
+ help:()=>['Commands: help, about, projects, skills, stats, videos, resume, contact, clear'],
+ about:()=>[ABOUT],
+ projects:()=>typeof PROJECTS==='undefined'?['No projects loaded.']:PROJECTS.map(p=>[A(p.title,'#'+p.id),' ('+p.date+')']),
+ skills:()=>Object.keys(SKILLS).length?Object.entries(SKILLS).map(([k,v])=>k+': '+v.join(', ')):['Skills not loaded yet.'],
+ stats:()=>['LeetCode solved: '+(S.leetcode?.solved??'n/a'),'Codeforces rating: '+(S.codeforces?.rating??'unrated'),'TryHackMe rank: '+(S.tryhackme?.rank??'n/a')],
+ videos:()=>(S.youtube||[]).length?S.youtube.slice(0,3).map(y=>[A(y.title,'https://www.youtube.com/watch?v='+y.id)]):['No videos loaded yet.'],
+ resume:()=>[A('Open resume.pdf','resume.pdf')],
+ contact:()=>[[A('adityaurank410@gmail.com','mailto:adityaurank410@gmail.com')],[A('LinkedIn','https://www.linkedin.com/in/asuf10ppy/'),' ',A('GitHub','https://github.com/asuf10ppy'),' ',A('YouTube','https://www.youtube.com/@asuf10ppy')]]
+};
+function put(...x){const d=document.createElement('div');d.className='o';x.forEach(n=>d.append(n));$('#tout').append(d)}
+function run(c){
+ c=c.trim().toLowerCase();if(!c)return;
+ if(c=='clear'){$('#tout').innerHTML='';return}
+ const p=document.createElement('span');p.className='p';p.textContent='$ ';put(p,c);
+ (CM[c]?CM[c]():['command not found: '+c+'. Try help.']).forEach(l=>put(...[].concat(l)));
+}
+Object.keys(CM).forEach(k=>{const b=document.createElement('button');b.type='button';b.textContent=k;b.onclick=()=>run(k);$('#chips').append(b)});
+$('#tf').onsubmit=e=>{e.preventDefault();run($('#ti').value);$('#ti').value=''};
+
 boot();stats();
 </script></body></html>

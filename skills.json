@@ -1,0 +1,7 @@
+{
+  "Languages": ["C", "C++", "Python"],
+  "Embedded and hardware": ["ESP32", "ESP8266", "Arduino", "Arduino IDE", "Microcontrollers", "Embedded Systems", "Hardware Programming", "Electronic Circuit Design", "Electronics Hardware Design", "Ultrasonic Sensor", "Sensor Integration"],
+  "IoT and automation": ["IoT", "Home Automation", "Automation", "Robotics", "Renewable Energy"],
+  "Foundations": ["Calculus", "Linear Algebra", "Physics", "Mathematics"],
+  "Working style": ["Problem Solving", "Logical Reasoning", "Project Planning", "Project Management", "Time Management"]
+}
