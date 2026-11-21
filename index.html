@@ -2,9 +2,9 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Aditya S Uranakar | Embedded systems and low-level security</title>
-<meta name="description" content="Freshman CSE at IIIT Bangalore building ESP32 and Arduino projects and exploring OS internals and low-level security.">
+<meta name="description" content="Building embedded and IoT projects, learning OS internals and security.">
 <meta property="og:type" content="website"><meta property="og:url" content="https://asuf10ppy.github.io/"><meta property="og:image" content="https://asuf10ppy.github.io/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://asuf10ppy.github.io/og-image.png">
-<meta property="og:title" content="Aditya S Uranakar"><meta property="og:description" content="Embedded systems, OS internals and low-level security.">
+<meta property="og:title" content="Aditya S Uranakar"><meta property="og:description" content="Building embedded and IoT projects, learning OS internals and security.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -32,7 +32,7 @@ h3{font:700 1rem var(--mono);color:#fff}
 .grid{display:grid;gap:16px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:18px 20px;color:inherit;display:block}
 a.card:hover{border-color:var(--g);text-decoration:none}
-.big{font:700 2.4rem/1.1 var(--mono);color:var(--g)}
+.big{font:700 1.9rem/1.1 var(--mono);color:var(--g)}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.tags span{font:12px var(--mono);border:1px solid var(--line);padding:1px 8px;border-radius:3px;color:var(--mute)}
 .wide{grid-column:1/-1;border-left:3px solid var(--g)}
 .next{color:var(--amber);font-size:.9rem;margin-top:8px}
@@ -56,6 +56,7 @@ summary{cursor:pointer;font:13px var(--mono);color:var(--g)}
 pre{background:#050c09;border:1px solid var(--line);border-radius:4px;padding:12px;overflow-x:auto;margin-top:10px;font:12px/1.5 var(--mono)}
 .pt{fill:#0d1a14;stroke:#2a5a43}.pn{fill:#fff;font:700 12px var(--mono)}.pl{fill:#86a393;font:11px var(--mono)}.dot{fill:#3dff8a}
 .w{fill:none;stroke-width:2}.w.p{stroke:#ff6b6b}.w.g{stroke:#86a393}.w.s{stroke:#3dff8a}
+.cp{font:12px var(--mono);background:transparent;color:var(--g);border:1px solid var(--line);border-radius:3px;padding:1px 10px;cursor:pointer;margin-left:auto}.cp:hover{border-color:var(--g)}
 </style></head>
 <body><main>
 <header class="hero">
@@ -65,13 +66,13 @@ pre{background:#050c09;border:1px solid var(--line);border-radius:4px;padding:12
   <div class="ln"><span class="p">$</span> <span class="cmd">cat focus.txt</span></div>
   <div class="out">Freshman CSE at IIIT Bangalore<br>Embedded systems, OS internals, low-level security<br>C, ESP32, IoT</div>
   <div class="ln"><span class="p">$</span> <span class="cmd">ls links</span></div>
-  <div class="out links"><a href="https://www.linkedin.com/in/asuf10ppy/">linkedin</a><a href="https://github.com/asuf10ppy">github</a><a href="https://www.youtube.com/@asuf10ppy">youtube</a><a href="resume.pdf">resume</a><a href="mailto:adityaurank410@gmail.com">email</a></div>
+  <div class="out links"><a href="https://www.linkedin.com/in/asuf10ppy/">linkedin</a><a href="https://github.com/asuf10ppy">github</a><a href="https://www.youtube.com/@asuf10ppy">youtube</a><a href="resume.pdf">resume</a><a href="mailto:adityaurank410@gmail.com">email</a><a href="#" id="share">share</a></div>
   <div class="live" id="live"><div class="chips" id="chips"></div><div id="tout"></div><form id="tf" autocomplete="off"><span class="p">$</span><input id="ti" aria-label="Type a command" placeholder="type a command, try help" autocapitalize="off" spellcheck="false"></form></div>
  </div></div>
  <img id="photo" src="photo.jpg" alt="Aditya S Uranakar" hidden onload="this.hidden=false">
 </header>
 
-<section><h2>stats</h2>
+<section><h2>practice-log</h2>
  <div class="grid g3">
   <a class="card" href="https://leetcode.com/u/asuf10ppy/"><div class="big" id="lc">&mdash;</div><div>LeetCode problems solved</div><div class="mute" id="lc2"></div></a>
   <a class="card" href="https://codeforces.com/profile/asuf10ppy"><div class="big" id="cf">&mdash;</div><div>Codeforces rating</div><div class="mute" id="cf2"></div></a>
@@ -93,7 +94,7 @@ pre{background:#050c09;border:1px solid var(--line);border-radius:4px;padding:12
 </section>
 
 <section><h2>about</h2>
- <p style="max-width:70ch">I like understanding how systems work beneath the surface: embedded hardware, operating systems and low-level security. I learn by building, from an IoT irrigation system and a dual-axis solar tracker to an ESP32 smart room that runs around the clock. Right now I am exploring OS and kernel security through Gene/sys and the business side of tech through E-Cell. Open to internships, research and collaborations in embedded and systems security.</p>
+ <p style="max-width:70ch">I like understanding how systems work beneath the surface: embedded hardware, operating systems and low-level security. I learn by building, from an IoT irrigation system and a dual-axis solar tracker to an ESP32 smart room that runs around the clock. Right now I am exploring OS and kernel security through Gene/sys and the business side of tech through E-Cell. Always happy to chat about internships, research or collaborations in embedded and systems security.</p>
 </section>
 
 <section><h2>involvement</h2>
@@ -101,22 +102,6 @@ pre{background:#050c09;border:1px solid var(--line);border-radius:4px;padding:12
   <div class="card"><h3>Gene/sys, IIIT Bangalore</h3><div class="mute">Tech member, general track, Sep 2026 to now</div><p>Low-level computing and cybersecurity: operating systems, kernel concepts and systems programming.</p><p><a href="https://www.instagram.com/genesys_iiitb/" target="_blank" rel="noopener">Gene/sys on Instagram</a></p></div>
   <div class="card"><h3>E-Cell, IIIT-B</h3><div class="mute">Sponsorship and outreach, Sep 2026 to now</div><p>Finding potential corporate partners and researching sponsorship opportunities.</p><p><a href="https://www.iiitb.ac.in/ecell" target="_blank" rel="noopener">E-Cell website</a></p></div>
  </div>
-</section>
-
-<section><h2>achievements</h2>
- <ul class="l">
-  <li><b>1st prize, Summer School in Electronics &amp; Computers (SUSIEC-2023).</b> IETE Bengaluru Centre, May 2023. Won an electronics quiz and a project exhibition.</li>
-  <li><b>1st prize, World Science Day 2022 project exhibition.</b> Sambhram Institute of Technology, Nov 2022.</li>
-  <li><b>Nurture IGNITO science exhibitions.</b> Represented BEL School in Jan 2022 and Jan 2023, with certificates of appreciation.</li>
- </ul>
-</section>
-
-<section><h2>education</h2>
- <ul class="l">
-  <li><b>IIIT Bangalore</b>, B.Tech in Computer Science and Engineering, 2026 to 2030</li>
-  <li><b>Narayana PU College</b>, 2nd PUC (PCMC), 97.5%, 2024 to 2026</li>
-  <li><b>BEL School CBSE</b>, 93.4%, 2014 to 2024</li>
- </ul>
 </section>
 
 <section><h2>contact</h2>
@@ -185,24 +170,33 @@ function renderProjects(){
  const box=$('#projects');
  PROJECTS.forEach((p,i)=>{
   const a=document.createElement('article');a.className='card'+(i?'':' wide');a.id=p.id;
-  a.innerHTML=`<h3>${p.title}</h3><div class="mute">${p.date}</div><p>${p.desc}</p>${p.next?`<div class="next">${p.next}</div>`:''}<div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}</div><details><summary>Circuit diagram</summary><div class="dg">${diagram(p.d)}</div><p class="mute">${p.note}</p></details><details><summary>Reference code (${p.file})</summary><pre><code></code></pre></details>`;
-  a.querySelector('code').textContent=p.code;box.append(a);
+  a.innerHTML=`<h3>${p.title}</h3><div class="mute">${p.date}</div><p>${p.desc}</p>${p.next?`<div class="next">${p.next}</div>`:''}<div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}<button class="cp" type="button">Share</button></div><details><summary>Circuit diagram</summary><div class="dg">${diagram(p.d)}</div><p class="mute">${p.note}</p></details><details><summary>Reference code (${p.file})</summary><pre><code></code></pre></details>`;
+  a.querySelector('code').textContent=p.code;
+  a.querySelector('.cp').onclick=async e=>{const b=e.currentTarget,m=await shareLink(location.origin+location.pathname+'#'+p.id);b.textContent=m;setTimeout(()=>b.textContent='Share',2200)};
+  box.append(a);
  });
 }
 if(typeof PROJECTS!=='undefined')renderProjects();
 fetch('skills.json').then(r=>r.json()).then(k=>{SKILLS=k;const b=$('#skills');
  Object.entries(k).forEach(([g,v])=>{const c=document.createElement('div');c.className='card';const h=document.createElement('h3');h.textContent=g;const t=document.createElement('div');t.className='tags';
   v.forEach(s=>{const e=document.createElement('span');e.textContent=s;t.append(e)});c.append(h,t);b.append(c)})}).catch(()=>{});
+async function shareLink(url=location.origin+location.pathname){
+ const d={title:document.title,text:'Aditya S Uranakar: embedded and IoT projects',url};
+ try{if(navigator.share){await navigator.share(d);return 'Shared'}await navigator.clipboard.writeText(url);return 'Link copied'}
+ catch(e){return e.name==='AbortError'?'Share cancelled':'Copy this link: '+url}
+}
+$('#share').onclick=async e=>{e.preventDefault();const l=e.currentTarget,m=await shareLink();l.textContent=m;setTimeout(()=>l.textContent='share',2200)};
 const ABOUT='Freshman CSE at IIIT Bangalore. I learn by building: ESP32 and ESP8266 projects, Arduino robots, and now OS and kernel security through Gene/sys. Open to internships and research in embedded and systems security.';
 const CM={
- help:()=>['Commands: help, about, projects, skills, stats, videos, resume, contact, clear'],
+ help:()=>['Commands: help, about, projects, skills, stats, videos, resume, contact, share, clear'],
  about:()=>[ABOUT],
  projects:()=>typeof PROJECTS==='undefined'?['No projects loaded.']:PROJECTS.map(p=>[A(p.title,'#'+p.id),' ('+p.date+')']),
  skills:()=>Object.keys(SKILLS).length?Object.entries(SKILLS).map(([k,v])=>k+': '+v.join(', ')):['Skills not loaded yet.'],
  stats:()=>['LeetCode solved: '+(S.leetcode?.solved??'n/a'),'Codeforces rating: '+(S.codeforces?.rating??'unrated'),'TryHackMe rank: '+(S.tryhackme?.rank??'n/a')],
  videos:()=>(S.youtube||[]).length?S.youtube.slice(0,3).map(y=>[A(y.title,'https://www.youtube.com/watch?v='+y.id)]):['No videos loaded yet.'],
  resume:()=>[A('Open resume.pdf','resume.pdf')],
- contact:()=>[[A('adityaurank410@gmail.com','mailto:adityaurank410@gmail.com')],[A('LinkedIn','https://www.linkedin.com/in/asuf10ppy/'),' ',A('GitHub','https://github.com/asuf10ppy'),' ',A('YouTube','https://www.youtube.com/@asuf10ppy')]]
+ contact:()=>[[A('adityaurank410@gmail.com','mailto:adityaurank410@gmail.com')],[A('LinkedIn','https://www.linkedin.com/in/asuf10ppy/'),' ',A('GitHub','https://github.com/asuf10ppy'),' ',A('YouTube','https://www.youtube.com/@asuf10ppy')]],
+ share:()=>{shareLink().then(m=>put(m));return []}
 };
 function put(...x){const d=document.createElement('div');d.className='o';x.forEach(n=>d.append(n));$('#tout').append(d)}
 function run(c){
