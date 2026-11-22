@@ -89,6 +89,10 @@ pre{background:#050c09;border:1px solid var(--line);border-radius:4px;padding:12
  <div class="grid g2" id="projects"></div>
 </section>
 
+<section><h2>repos</h2>
+ <div class="grid g2" id="repos"><p class="mute">No public repos listed yet.</p></div>
+</section>
+
 <section><h2>skills</h2>
  <div class="grid g2" id="skills"></div>
 </section>
@@ -149,6 +153,14 @@ async function stats(){
     a.append(im,t,d);v.append(a);
    });
   }
+  const rp=s.github||[],rb=$('#repos');
+  if(rp.length){rb.innerHTML='';rp.forEach(r=>{
+   const a=document.createElement('a');a.className='card';a.href=r.url;a.target='_blank';a.rel='noopener';
+   const h=document.createElement('h3');h.textContent=r.name;
+   const q=document.createElement('p');q.textContent=r.description||'No description yet.';
+   const m=document.createElement('div');m.className='tags';
+   [r.language,r.stars?r.stars+' stars':''].filter(Boolean).forEach(t=>{const e=document.createElement('span');e.textContent=t;m.append(e)});
+   a.append(h,q,m);rb.append(a)})}
  }catch(e){console.warn('stats.json not loaded',e)}
 }
 let S={},SKILLS={};
@@ -188,7 +200,7 @@ async function shareLink(url=location.origin+location.pathname){
 $('#share').onclick=async e=>{e.preventDefault();const l=e.currentTarget,m=await shareLink();l.textContent=m;setTimeout(()=>l.textContent='share',2200)};
 const ABOUT='Freshman CSE at IIIT Bangalore. I learn by building: ESP32 and ESP8266 projects, Arduino robots, and now OS and kernel security through Gene/sys. Open to internships and research in embedded and systems security.';
 const CM={
- help:()=>['Commands: help, about, projects, skills, stats, videos, resume, contact, share, clear'],
+ help:()=>['Commands: help, about, projects, skills, stats, videos, resume, contact, repos, share, clear'],
  about:()=>[ABOUT],
  projects:()=>typeof PROJECTS==='undefined'?['No projects loaded.']:PROJECTS.map(p=>[A(p.title,'#'+p.id),' ('+p.date+')']),
  skills:()=>Object.keys(SKILLS).length?Object.entries(SKILLS).map(([k,v])=>k+': '+v.join(', ')):['Skills not loaded yet.'],
@@ -196,6 +208,7 @@ const CM={
  videos:()=>(S.youtube||[]).length?S.youtube.slice(0,3).map(y=>[A(y.title,'https://www.youtube.com/watch?v='+y.id)]):['No videos loaded yet.'],
  resume:()=>[A('Open resume.pdf','resume.pdf')],
  contact:()=>[[A('adityaurank410@gmail.com','mailto:adityaurank410@gmail.com')],[A('LinkedIn','https://www.linkedin.com/in/asuf10ppy/'),' ',A('GitHub','https://github.com/asuf10ppy'),' ',A('YouTube','https://www.youtube.com/@asuf10ppy')]],
+ repos:()=>(S.github||[]).length?S.github.map(r=>[A(r.name,r.url),r.description?' - '+r.description:'']):['No repos loaded yet.'],
  share:()=>{shareLink().then(m=>put(m));return []}
 };
 function put(...x){const d=document.createElement('div');d.className='o';x.forEach(n=>d.append(n));$('#tout').append(d)}
