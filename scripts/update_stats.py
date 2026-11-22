@@ -1,4 +1,4 @@
-import json, re, sys, urllib.request, xml.etree.ElementTree as ET
+import json, os, re, sys, urllib.request, xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 
 USER = "asuf10ppy"
@@ -38,6 +38,17 @@ def youtube():
     return [{"id": e.find("yt:videoId", ns).text, "title": e.find("a:title", ns).text,
              "published": e.find("a:published", ns).text[:10]} for e in root.findall("a:entry", ns)[:6]]
 
+HIDE = {"asuf10ppy.github.io", "f10ppy"}   # repos to leave off the site
+
+def github():
+    h = {"Accept": "application/vnd.github+json"}
+    if os.environ.get("GITHUB_TOKEN"):
+        h["Authorization"] = "Bearer " + os.environ["GITHUB_TOKEN"]
+    repos = json.loads(get(f"https://api.github.com/users/{USER}/repos?per_page=100&sort=pushed", None, h))
+    return [{"name": r["name"], "description": r.get("description") or "", "language": r.get("language") or "",
+             "stars": r["stargazers_count"], "url": r["html_url"]}
+            for r in repos if not r["fork"] and r["name"] not in HIDE]
+
 def merge(a, b):
     for k, v in b.items():
         if isinstance(v, dict) and isinstance(a.get(k), dict):
@@ -50,7 +61,7 @@ try:
 except Exception:
     data = {}
 
-for name, fn in [("codeforces", codeforces), ("leetcode", leetcode), ("tryhackme", tryhackme), ("youtube", youtube)]:
+for name, fn in [("codeforces", codeforces), ("leetcode", leetcode), ("tryhackme", tryhackme), ("youtube", youtube), ("github", github)]:
     try:
         res = fn()
         if isinstance(res, dict):
