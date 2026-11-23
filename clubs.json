@@ -1,0 +1,31 @@
+{
+  "ecell": {
+    "name": "E-Cell, IIIT Bangalore",
+    "role": "Member, Sponsorship and Outreach",
+    "dates": "Sep 2026 to now",
+    "summary": "I work on sponsorship and outreach for the Entrepreneurship Cell, the business side of tech at IIIT Bangalore.",
+    "links": [{"text": "E-Cell website", "url": "https://www.iiitb.ac.in/ecell"}],
+    "did": [
+      "Identify potential corporate partners for the club",
+      "Research sponsorship opportunities"
+    ],
+    "featured": []
+  },
+  "genesys": {
+    "name": "Gene/sys, IIIT Bangalore",
+    "role": "Tech Member, General Track",
+    "dates": "Sep 2026 to now",
+    "summary": "Gene/sys is the technical club I use to explore low-level computing and cybersecurity.",
+    "links": [{"text": "Gene/sys on Instagram", "url": "https://www.instagram.com/genesys_iiitb/"}],
+    "did": [
+      "Exploring operating systems and kernel-level concepts",
+      "Building a stronger foundation in systems programming and cybersecurity"
+    ],
+    "featured": [
+      {
+        "title": "Cicada 3301: the SURE MUN challenge",
+        "text": "I designed and built an audio-signal challenge for Cicada 3301, a campus-wide cyber-investigation event for IIIT Bangalore students. Teams had to decode a hidden signal and submit a 16-character hex key to unlock the next challenge."
+      }
+    ]
+  }
+}

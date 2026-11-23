@@ -1,14 +1,12 @@
-# Deploy guide
+# Update guide
 
-1. On GitHub, create a **public** repo named exactly `asuf10ppy.github.io`.
-2. Upload everything in this folder, including the hidden `.github` folder (drag the whole folder in, or use git).
-3. Repo Settings > Pages > Source: **Deploy from a branch**, branch `main`, folder `/ (root)`.
-4. Repo Settings > Actions > General > Workflow permissions: **Read and write permissions**.
-5. Actions tab > "Update stats" > **Run workflow** once to fill `stats.json`. After that it runs daily.
-6. Your site: https://asuf10ppy.github.io. Put it in LinkedIn under Contact info > Website and in your Featured section.
+Upload to the root of the `asuf10ppy.github.io` repo (replace `index.html`):
 
-**Photo:** add a square image named `photo.jpg` next to `index.html`. It appears automatically.
+- `index.html` (replaces the old one)
+- `ecell.html`, `genesys.html`, `club.css`, `club.js`, `clubs.json` (club pages)
+- `certs/` folder with 4 images (upload the folder's files; GitHub keeps the folder name if you drag the folder in)
+- `projects.js`, `skills.json`, `resume.pdf`, `og-image.png` stay as before
 
-**If a stat is wrong or blank** (TryHackMe and LeetCode use unofficial endpoints), set it by hand in `stats.json`, for example:
-`"override": {"tryhackme": {"rank": 12345, "rooms": 40}}`
-Overrides are re-applied after every daily update.
+Keep `stats.json`, `scripts/` and `.github/` as they are.
+
+**Edit a club page:** open `clubs.json` on GitHub, click the pencil, and add a line to the `did` list of that club (keep quotes and commas).
