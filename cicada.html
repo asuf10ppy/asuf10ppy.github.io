@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cicada 3301: SURE MUN | Aditya S Uranakar</title><meta name="description" content="A web version of the SURE MUN audio challenge I wrote for Cicada 3301 at IIIT Bangalore."><meta property="og:title" content="Cicada 3301: SURE MUN | Aditya S Uranakar"><meta property="og:description" content="A web version of the SURE MUN audio challenge I wrote for Cicada 3301 at IIIT Bangalore."><meta property="og:image" content="https://asuf10ppy.github.io/og-image.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="club.css"><style>.btn{display:inline-block;font:700 14px var(--mono);background:transparent;color:var(--g);border:1px solid var(--g);border-radius:3px;padding:8px 14px;cursor:pointer}.btn:hover{background:rgba(61,255,138,.1);text-decoration:none}
+input[type=text]{width:100%;max-width:400px;background:var(--panel);border:1px solid var(--line);border-radius:3px;color:var(--text);font:14px var(--mono);padding:9px 12px}
+#r{margin-top:10px;font:14px var(--mono)}#r.ok{color:var(--g)}#r.bad{color:#ff6b6b}
+pre{background:#050c09;border:1px solid var(--line);border-radius:4px;padding:12px;overflow-x:auto;font:12px/1.5 var(--mono);margin:10px 0}ol{padding-left:22px}</style></head>
+<body><main>
+<a href="genesys.html">&larr; Back to Gene/sys</a>
+<h1>Cicada 3301: SURE MUN</h1>
+<div class="mute">A web version of a challenge I wrote for Gene/sys</div>
+<p style="margin-top:14px">Cicada 3301 was a campus-wide cyber-investigation event at IIIT Bangalore: solve a challenge, get a key, unlock the next one. This is a small replica of my challenge. The key here is new, not the one used at the event.</p>
+<h2>the-brief</h2>
+<div class="card"><p>Don't trust the first thing the signal tells you, or the second, or the hundredth. It was built to repeat, and the repeating is not a mistake. Hours of broadcast, and one minute that matters.</p>
+<p style="margin-top:10px">Everyone remembers the number, and it is facing the wrong way. Some numbers in this story are real and some are bait. The only way out is through.</p>
+<p class="mute" style="margin-top:10px">Key format: Cicada3301{16 hex characters}</p></div>
+<h2>the-signal</h2>
+<p><a class="btn" href="signal_mini.wav" download>Download signal_mini.wav</a></p>
+<p class="mute" style="margin-top:8px">3.2 MB. Your player will show about 79 minutes (the event version showed 79 hours). Open it in Audacity, VLC or similar. Browsers can't play it directly.</p>
+<h2>your-answer</h2>
+<form id="f" autocomplete="off"><input type="text" id="k" placeholder="Cicada3301{...}" aria-label="Key" spellcheck="false" autocapitalize="off"> <button class="btn" type="submit">Check</button></form>
+<div id="r" aria-live="polite"></div>
+<h2>stuck</h2>
+<button class="btn" id="hs" type="button" aria-expanded="false">How to solve (spoilers)</button>
+<div id="sol" hidden style="margin-top:16px"><ol>
+<li><b>The header lies.</b> The file says 348 Hz and about 79 minutes, so it sounds like nothing. Plot its spectrum and you will see a steady hum near 47.8 Hz.</li>
+<li><b>Use the number.</b> If that hum is really 3301 Hz, the audio is slowed by 3301 / 47.84 = 69. The real sample rate is 348 x 69 = 24,012 Hz. Set the track rate to 24012 in Audacity (track menu, Rate, Other) or run the script below.</li>
+<li><b>Listen.</b> The restored audio is 69 seconds long: noise, the 3301 Hz hum, and a 600 Hz Morse message that keeps repeating KEEP LOOKING. That repeating message is the bait.</li>
+<li><b>Face the number the right way.</b> 3301 reversed is 1033, so look at 10.33 seconds. (The event version hid it at 10:33.) A different Morse message starts there.</li>
+<li><b>Decode it</b> by ear, or with a 600 Hz band-pass and a Morse table. It spells a web address: <code>ASUF10PPY.GITHUB.IO/SYNERGY2026</code></li>
+<li><b>Open the page.</b> It is a 40 minute archive with captions. This time the number is real: go to 33:01 and read the key.</li></ol>
+<pre><code>import wave
+src = wave.open("signal_mini.wav")
+dst = wave.open("restored.wav", "wb")
+dst.setnchannels(1); dst.setsampwidth(2)
+dst.setframerate(src.getframerate() * 69)   # 348 x 69 = 24,012 Hz
+dst.writeframes(src.readframes(src.getnframes()))
+dst.close()</code></pre>
+<button class="btn" id="pl" type="button">Play restored audio</button></div>
+</main><script>
+const $=s=>document.querySelector(s),HASH="708617d2b8daddcf23175fbee371aaae532069163a0b1753b856ae76595c1b99";
+async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+$('#f').onsubmit=async e=>{e.preventDefault();const r=$('#r');
+ try{const ok=(await sha($('#k').value.trim().toLowerCase()))===HASH;r.className=ok?'ok':'bad';r.textContent=ok?'Correct. You solved SURE MUN.':'Not the key. Keep looking.'}
+ catch(x){r.className='bad';r.textContent='Checking needs a secure (https) page.'}};
+$('#hs').onclick=e=>{const s=$('#sol'),o=s.hidden;s.hidden=!o;e.target.setAttribute('aria-expanded',o)};
+let ctx,src;
+$('#pl').onclick=async e=>{
+ if(src){src.stop();src=null;e.target.textContent='Play restored audio';return}
+ const d=new Int16Array((await (await fetch('signal_mini.wav')).arrayBuffer()).slice(44));
+ ctx=ctx||new AudioContext();const ab=ctx.createBuffer(1,d.length,24012),c=ab.getChannelData(0);
+ for(let i=0;i<d.length;i++)c[i]=d[i]/32768;
+ src=ctx.createBufferSource();src.buffer=ab;src.connect(ctx.destination);src.onended=()=>{src=null;e.target.textContent='Play restored audio'};src.start();e.target.textContent='Stop'};
+</script></body></html>
