@@ -1,21 +1,238 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Signal archive</title><meta name="description" content="Archive recording with captions."><meta property="og:title" content="Signal archive"><meta property="og:description" content="Archive recording with captions."><meta property="og:image" content="https://asuf10ppy.github.io/og-image.png"><meta name="twitter:card" content="summary_large_image">
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aditya S Uranakar | Embedded systems and low-level security</title>
+<meta name="description" content="Building embedded and IoT projects, learning OS internals and security.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://asuf10ppy.github.io/"><meta property="og:image" content="https://asuf10ppy.github.io/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://asuf10ppy.github.io/og-image.png">
+<meta property="og:title" content="Aditya S Uranakar"><meta property="og:description" content="Building embedded and IoT projects, learning OS internals and security.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../club.css"><style>.btn{display:inline-block;font:700 14px var(--mono);background:transparent;color:var(--g);border:1px solid var(--g);border-radius:3px;padding:8px 14px;cursor:pointer}.btn:hover{background:rgba(61,255,138,.1);text-decoration:none}
-input[type=text]{width:100%;max-width:400px;background:var(--panel);border:1px solid var(--line);border-radius:3px;color:var(--text);font:14px var(--mono);padding:9px 12px}
-#r{margin-top:10px;font:14px var(--mono)}#r.ok{color:var(--g)}#r.bad{color:#ff6b6b}
-pre{background:#050c09;border:1px solid var(--line);border-radius:4px;padding:12px;overflow-x:auto;font:12px/1.5 var(--mono);margin:10px 0}ol{padding-left:22px}</style></head>
+<style>
+:root{--bg:#07100c;--panel:#0d1a14;--line:#1f3d2e;--text:#d6eadf;--mute:#86a393;--g:#3dff8a;--amber:#ffb347;--mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;--sans:'IBM Plex Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font:16px/1.65 var(--sans);background-image:linear-gradient(rgba(61,255,138,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(61,255,138,.045) 1px,transparent 1px);background-size:32px 32px}
+a{color:var(--g);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--g);outline-offset:3px}
+main{max-width:1040px;margin:0 auto;padding:40px 20px 60px}
+section{padding-top:64px}
+h2{font:700 1.15rem var(--mono);color:var(--g);margin-bottom:20px}h2::before{content:"~/";color:var(--mute)}
+h3{font:700 1rem var(--mono);color:#fff}
+.mute{color:var(--mute);font-size:.9rem}
+.hero{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
+#photo{width:170px;height:170px;border-radius:50%;object-fit:cover;border:2px solid var(--g);box-shadow:0 0 30px rgba(61,255,138,.25)}
+.term{background:var(--panel);border:1px solid var(--line);border-radius:6px;font:14px/1.8 var(--mono);box-shadow:0 0 50px rgba(61,255,138,.08)}
+.bar{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line)}.bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.tb{padding:18px 22px;min-height:290px}
+.p{color:var(--g)}.out{margin:2px 0 12px 18px;color:var(--text)}
+.name{font:700 clamp(1.7rem,5vw,2.9rem)/1.15 var(--mono);color:#fff}
+.links a{margin-right:16px;display:inline-block}
+.cur{display:inline-block;width:.6em;height:1.1em;background:var(--g);vertical-align:-.2em;animation:b 1s steps(2) infinite}
+@keyframes b{50%{opacity:0}}
+.js .ln,.js .out{display:none}
+.grid{display:grid;gap:16px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:18px 20px;color:inherit;display:block}
+a.card:hover{border-color:var(--g);text-decoration:none}
+.big{font:700 1.9rem/1.1 var(--mono);color:var(--g)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.tags span{font:12px var(--mono);border:1px solid var(--line);padding:1px 8px;border-radius:3px;color:var(--mute)}
+.wide{grid-column:1/-1;border-left:3px solid var(--g)}
+.next{color:var(--amber);font-size:.9rem;margin-top:8px}
+.vids{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.vids img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:3px;display:block;margin-bottom:10px;border:1px solid var(--line)}
+.vids .t{font-size:.92rem;line-height:1.4}
+ul.l{list-style:none;padding:0}ul.l li{padding:8px 0;border-bottom:1px solid var(--line)}ul.l li:last-child{border:0}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line)}
+@media(max-width:760px){.hero{grid-template-columns:1fr}#photo{order:-1;width:120px;height:120px}.g3,.g2{grid-template-columns:1fr}section{padding-top:48px}.tb{min-height:340px}}
+@media(prefers-reduced-motion:reduce){.cur{animation:none}}
+.js .live{display:none;margin-top:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px 18px}
+.chips button{font:12px var(--mono);background:transparent;color:var(--g);border:1px solid var(--line);border-radius:3px;padding:4px 10px;cursor:pointer}
+.chips button:hover{border-color:var(--g)}
+#tf{display:flex;gap:8px;align-items:center}
+#ti{flex:1;min-width:0;background:transparent;border:0;outline:0;color:var(--text);font:14px var(--mono);caret-color:var(--g)}
+#tout .o{margin:0 0 2px 18px}
+details{margin-top:12px;border-top:1px solid var(--line);padding-top:8px}
+summary{cursor:pointer;font:13px var(--mono);color:var(--g)}
+.dg{overflow-x:auto;margin-top:10px}.dg svg{min-width:620px;width:100%;height:auto}
+pre{background:#050c09;border:1px solid var(--line);border-radius:4px;padding:12px;overflow-x:auto;margin-top:10px;font:12px/1.5 var(--mono)}
+.pt{fill:#0d1a14;stroke:#2a5a43}.pn{fill:#fff;font:700 12px var(--mono)}.pl{fill:#86a393;font:11px var(--mono)}.dot{fill:#3dff8a}
+.w{fill:none;stroke-width:2}.w.p{stroke:#ff6b6b}.w.g{stroke:#86a393}.w.s{stroke:#3dff8a}
+.cp{font:12px var(--mono);background:transparent;color:var(--g);border:1px solid var(--line);border-radius:3px;padding:1px 10px;cursor:pointer;margin-left:auto}.cp:hover{border-color:var(--g)}
+.cert{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:10px;color:var(--text);font:inherit;cursor:pointer}.cert:hover{border-color:var(--g)}
+dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:12px;max-width:min(94vw,1100px);margin:auto}dialog::backdrop{background:rgba(0,0,0,.82)}dialog img{max-width:100%;max-height:78vh;display:block;margin:10px auto}
+</style></head>
 <body><main>
-<h1>Signal archive</h1><p class="mute">Archive recording, 40:00. Captions are on.</p>
-<div class="card"><div id="cap" aria-live="polite" style="min-height:3em;font:16px var(--mono)">(no captions)</div>
-<input type="range" id="s" min="0" max="2400" value="0" style="width:100%;margin-top:14px" aria-label="Timeline">
-<div class="mute" style="margin-top:6px"><span id="t">00:00</span> / 40:00</div>
-<p style="margin-top:12px"><label>Go to <input type="text" id="g" placeholder="mm:ss" style="max-width:120px"></label></p></div>
-</main><script>
-const $=s=>document.querySelector(s),K="Cicada3301{e945029e9e0fe5cc}";
-const f=n=>String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');
-function at(n){n=Math.max(0,Math.min(2400,n|0));$('#s').value=n;$('#t').textContent=f(n);$('#cap').textContent=(n>=1981&&n<1985)?K:'(no captions)'}
-$('#s').oninput=e=>at(+e.target.value);
-$('#g').onchange=e=>{const m=e.target.value.match(/^(\d{1,2}):(\d{2})$/);if(m)at(+m[1]*60+ +m[2])};
+<header class="hero">
+ <div class="term"><div class="bar"><i></i><i></i><i></i></div><div class="tb">
+  <div class="ln"><span class="p">$</span> <span class="cmd">whoami</span></div>
+  <div class="out"><h1 class="name">Aditya S Uranakar</h1></div>
+  <div class="ln"><span class="p">$</span> <span class="cmd">cat focus.txt</span></div>
+  <div class="out">Freshman CSE at IIIT Bangalore<br>Embedded systems, OS internals, low-level security<br>C, ESP32, IoT</div>
+  <div class="ln"><span class="p">$</span> <span class="cmd">ls links</span></div>
+  <div class="out links"><a href="https://www.linkedin.com/in/asuf10ppy/">linkedin</a><a href="https://github.com/asuf10ppy">github</a><a href="https://www.youtube.com/@asuf10ppy">youtube</a><a href="resume.pdf">resume</a><a href="mailto:adityaurank410@gmail.com">email</a><a href="#" id="share">share</a></div>
+  <div class="live" id="live"><div class="chips" id="chips"></div><div id="tout"></div><form id="tf" autocomplete="off"><span class="p">$</span><input id="ti" aria-label="Type a command" placeholder="type a command, try help" autocapitalize="off" spellcheck="false"></form></div>
+ </div></div>
+ <img id="photo" src="photo.jpg" alt="Aditya S Uranakar" hidden onload="this.hidden=false">
+</header>
+
+<section><h2>practice-log</h2>
+ <div class="grid g3">
+  <a class="card" href="https://leetcode.com/u/asuf10ppy/"><div class="big" id="lc">&mdash;</div><div>LeetCode problems solved</div><div class="mute" id="lc2"></div></a>
+  <a class="card" href="https://codeforces.com/profile/asuf10ppy"><div class="big" id="cf">&mdash;</div><div>Codeforces rating</div><div class="mute" id="cf2"></div></a>
+  <a class="card" href="https://tryhackme.com/p/asuf10ppy"><div class="big" id="thm">&mdash;</div><div>TryHackMe rank</div><div class="mute" id="thm2"></div></a>
+ </div>
+</section>
+
+<section><h2>latest-videos</h2>
+ <div class="grid vids" id="vids"><p class="mute">Loading videos. <a href="https://www.youtube.com/@asuf10ppy">Open the channel</a>.</p></div>
+</section>
+
+<section><h2>projects</h2>
+ <p class="mute" style="margin:-8px 0 16px">Wiring diagrams and code are reference designs written from the project descriptions. Pins and parts may differ from the original builds.</p>
+ <div class="grid g2" id="projects"></div>
+</section>
+
+<section><h2>repos</h2>
+ <div class="grid g2" id="repos"><p class="mute">No public repos listed yet.</p></div>
+</section>
+
+<section><h2>skills</h2>
+ <div class="grid g2" id="skills"></div>
+</section>
+
+<section><h2>about</h2>
+ <p style="max-width:70ch">I like understanding how systems work beneath the surface: embedded hardware, operating systems and low-level security. I learn by building, from an IoT irrigation system and a dual-axis solar tracker to an ESP32 smart room that runs around the clock. Right now I am exploring OS and kernel security through Gene/sys and the business side of tech through E-Cell. Always happy to chat about internships, research or collaborations in embedded and systems security.</p>
+</section>
+
+<section id="involvement"><h2>involvement</h2>
+ <div class="grid g2">
+  <div class="card"><h3>Gene/sys, IIIT Bangalore</h3><div class="mute">Tech member, general track, Sep 2026 to now</div><p>Low-level computing and cybersecurity: operating systems, kernel concepts and systems programming.</p><p class="links"><a href="genesys.html">What I contributed</a><a href="https://www.instagram.com/genesys_iiitb/" target="_blank" rel="noopener">Gene/sys on Instagram</a></p></div>
+  <div class="card"><h3>E-Cell, IIIT-B</h3><div class="mute">Sponsorship and outreach, Sep 2026 to now</div><p>Finding potential corporate partners and researching sponsorship opportunities.</p><p class="links"><a href="ecell.html">What I contributed</a><a href="https://www.iiitb.ac.in/ecell" target="_blank" rel="noopener">E-Cell website</a></p></div>
+ </div>
+</section>
+
+<section><h2>certificates</h2>
+ <div id="certs"></div>
+</section>
+
+<section><h2>contact</h2>
+ <p>Want to build something or talk internships? <a href="mailto:adityaurank410@gmail.com">adityaurank410@gmail.com</a></p>
+ <p class="links" style="margin-top:8px"><a href="https://www.linkedin.com/in/asuf10ppy/">LinkedIn</a><a href="https://github.com/asuf10ppy">GitHub</a><a href="https://www.youtube.com/@asuf10ppy">YouTube</a><a href="resume.pdf">Resume (PDF)</a></p>
+</section>
+<footer class="mute">Stats refresh daily. Last update: <span id="upd">not yet</span></footer>
+</main>
+<script src="projects.js"></script>
+<script>
+document.documentElement.classList.add('js');
+const $=s=>document.querySelector(s),rm=matchMedia('(prefers-reduced-motion:reduce)').matches,sleep=ms=>new Promise(r=>setTimeout(r,ms));
+async function boot(){
+ const ln=[...document.querySelectorAll('.ln')],out=[...document.querySelectorAll('.out')];
+ for(let i=0;i<ln.length;i++){
+  ln[i].style.display='block';const c=ln[i].querySelector('.cmd'),t=c.textContent;
+  if(!rm){c.textContent='';for(const ch of t){c.textContent+=ch;await sleep(55)}await sleep(200)}
+  out[i].style.display='block';if(!rm)await sleep(350);
+ }
+ $('#live').style.display='block';run('help');
+}
+function count(el,v){
+ if(typeof v!=='number'){el.textContent=v??'\u2014';return}
+ if(rm){el.textContent=v.toLocaleString();return}
+ const t0=performance.now();(function f(t){const k=Math.min((t-t0)/1200,1);el.textContent=Math.round(v*(1-Math.pow(1-k,3))).toLocaleString();if(k<1)requestAnimationFrame(f)})(t0);
+}
+async function stats(){
+ try{
+  const s=S=await (await fetch('stats.json?'+Date.now())).json(),lc=s.leetcode||{},cf=s.codeforces||{},th=s.tryhackme||{};
+  count($('#lc'),lc.solved);
+  if(lc.easy!=null)$('#lc2').textContent=`${lc.easy} easy, ${lc.medium} medium, ${lc.hard} hard`;
+  count($('#cf'),cf.rating??'unrated');
+  $('#cf2').textContent=[cf.rank,cf.maxRating?'max '+cf.maxRating:'',cf.solved!=null?cf.solved+' solved':''].filter(Boolean).join(', ');
+  count($('#thm'),th.rank);
+  $('#thm2').textContent=[th.rooms!=null?th.rooms+' rooms':'',th.badges!=null?th.badges+' badges':''].filter(Boolean).join(', ');
+  if(s.updated)$('#upd').textContent=new Date(s.updated).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
+  const v=$('#vids');
+  if(s.youtube&&s.youtube.length){
+   v.innerHTML='';
+   s.youtube.forEach(y=>{
+    const a=document.createElement('a');a.className='card';a.href='https://www.youtube.com/watch?v='+encodeURIComponent(y.id);
+    const im=document.createElement('img');im.loading='lazy';im.alt='';im.src='https://i.ytimg.com/vi/'+encodeURIComponent(y.id)+'/hqdefault.jpg';
+    const t=document.createElement('div');t.className='t';t.textContent=y.title;
+    const d=document.createElement('div');d.className='mute';d.textContent=y.published||'';
+    a.append(im,t,d);v.append(a);
+   });
+  }
+  const rp=s.github||[],rb=$('#repos');
+  if(rp.length){rb.innerHTML='';rp.forEach(r=>{
+   const a=document.createElement('a');a.className='card';a.href=r.url;a.target='_blank';a.rel='noopener';
+   const h=document.createElement('h3');h.textContent=r.name;
+   const q=document.createElement('p');q.textContent=r.description||'No description yet.';
+   const m=document.createElement('div');m.className='tags';
+   [r.language,r.stars?r.stars+' stars':''].filter(Boolean).forEach(t=>{const e=document.createElement('span');e.textContent=t;m.append(e)});
+   a.append(h,q,m);rb.append(a)})}
+ }catch(e){console.warn('stats.json not loaded',e)}
+}
+let S={},SKILLS={};
+const A=(t,h)=>{const a=document.createElement('a');a.textContent=t;a.href=h;return a};
+function diagram(d){
+ const X=[10,270,540],W=[130,140,130],R=22,P={},cy=[10,10,10];let g='',w='';
+ d.parts.forEach((p,k)=>{
+  const c=p.c,isL=s=>c==2||s[0]=='<',nl=p.pins.filter(isL).length,h=Math.max(nl,p.pins.length-nl,1)*R+30,y=cy[c];cy[c]+=h+18;
+  g+=`<rect class="pt" x="${X[c]}" y="${y}" width="${W[c]}" height="${h}" rx="4"/><text class="pn" x="${X[c]+W[c]/2}" y="${y+17}" text-anchor="middle">${p.n}</text>`;
+  let a=0,b=0;
+  p.pins.forEach(s=>{const L=isL(s),i=L?a++:b++,x=L?X[c]:X[c]+W[c],yy=y+36+i*R;P[k+'|'+s]=[x,yy];
+   g+=`<circle class="dot" cx="${x}" cy="${yy}" r="3.5"/><text class="pl" x="${x+(L?8:-8)}" y="${yy+4}" text-anchor="${L?'start':'end'}">${s.replace('<','')}</text>`});
+ });
+ d.wires.forEach((e,i)=>{const a=P[e[0]+'|'+e[1]],b=P[e[2]+'|'+e[3]],m=a[0]+(b[0]-a[0])*(.3+.13*(i%4));
+  w+=`<path class="w ${e[4]}" d="M${a[0]} ${a[1]}H${m}V${b[1]}H${b[0]}"/>`});
+ return `<svg viewBox="0 0 680 ${Math.max(...cy)}" role="img" aria-label="Wiring diagram">${w}${g}</svg>`;
+}
+function renderProjects(){
+ const box=$('#projects');
+ PROJECTS.forEach((p,i)=>{
+  const a=document.createElement('article');a.className='card'+(i?'':' wide');a.id=p.id;
+  a.innerHTML=`<h3>${p.title}</h3><div class="mute">${p.date}</div><p>${p.desc}</p>${p.next?`<div class="next">${p.next}</div>`:''}<div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}<button class="cp" type="button">Share</button></div><details><summary>Circuit diagram</summary><div class="dg">${diagram(p.d)}</div><p class="mute">${p.note}</p></details><details><summary>Reference code (${p.file})</summary><pre><code></code></pre></details>`;
+  a.querySelector('code').textContent=p.code;
+  a.querySelector('.cp').onclick=async e=>{const b=e.currentTarget,m=await shareLink(location.origin+location.pathname+'#'+p.id);b.textContent=m;setTimeout(()=>b.textContent='Share',2200)};
+  box.append(a);
+ });
+}
+if(typeof PROJECTS!=='undefined')renderProjects();
+fetch('skills.json').then(r=>r.json()).then(k=>{SKILLS=k;const b=$('#skills');
+ Object.entries(k).forEach(([g,v])=>{const c=document.createElement('div');c.className='card';const h=document.createElement('h3');h.textContent=g;const t=document.createElement('div');t.className='tags';
+  v.forEach(s=>{const e=document.createElement('span');e.textContent=s;t.append(e)});c.append(h,t);b.append(c)})}).catch(()=>{});
+async function shareLink(url=location.origin+location.pathname){
+ const d={title:document.title,text:'Aditya S Uranakar: embedded and IoT projects',url};
+ try{if(navigator.share){await navigator.share(d);return 'Shared'}await navigator.clipboard.writeText(url);return 'Link copied'}
+ catch(e){return e.name==='AbortError'?'Share cancelled':'Copy this link: '+url}
+}
+$('#share').onclick=async e=>{e.preventDefault();const l=e.currentTarget,m=await shareLink();l.textContent=m;setTimeout(()=>l.textContent='share',2200)};
+const ABOUT='Freshman CSE at IIIT Bangalore. I learn by building: ESP32 and ESP8266 projects, Arduino robots, and now OS and kernel security through Gene/sys. Open to internships and research in embedded and systems security.';
+const CM={
+ help:()=>['Commands: help, about, projects, skills, stats, videos, resume, contact, repos, share, clear'],
+ about:()=>[ABOUT],
+ projects:()=>typeof PROJECTS==='undefined'?['No projects loaded.']:PROJECTS.map(p=>[A(p.title,'#'+p.id),' ('+p.date+')']),
+ skills:()=>Object.keys(SKILLS).length?Object.entries(SKILLS).map(([k,v])=>k+': '+v.join(', ')):['Skills not loaded yet.'],
+ stats:()=>['LeetCode solved: '+(S.leetcode?.solved??'n/a'),'Codeforces rating: '+(S.codeforces?.rating??'unrated'),'TryHackMe rank: '+(S.tryhackme?.rank??'n/a')],
+ videos:()=>(S.youtube||[]).length?S.youtube.slice(0,3).map(y=>[A(y.title,'https://www.youtube.com/watch?v='+y.id)]):['No videos loaded yet.'],
+ resume:()=>[A('Open resume.pdf','resume.pdf')],
+ contact:()=>[[A('adityaurank410@gmail.com','mailto:adityaurank410@gmail.com')],[A('LinkedIn','https://www.linkedin.com/in/asuf10ppy/'),' ',A('GitHub','https://github.com/asuf10ppy'),' ',A('YouTube','https://www.youtube.com/@asuf10ppy')]],
+ repos:()=>(S.github||[]).length?S.github.map(r=>[A(r.name,r.url),r.description?' - '+r.description:'']):['No repos loaded yet.'],
+ share:()=>{shareLink().then(m=>put(m));return []}
+};
+function put(...x){const d=document.createElement('div');d.className='o';x.forEach(n=>d.append(n));$('#tout').append(d)}
+function run(c){
+ c=c.trim().toLowerCase();if(!c)return;
+ if(c=='clear'){$('#tout').innerHTML='';return}
+ const p=document.createElement('span');p.className='p';p.textContent='$ ';put(p,c);
+ (CM[c]?CM[c]():['command not found: '+c+'. Try help.']).forEach(l=>put(...[].concat(l)));
+}
+Object.keys(CM).forEach(k=>{const b=document.createElement('button');b.type='button';b.textContent=k;b.onclick=()=>run(k);$('#chips').append(b)});
+$('#tf').onsubmit=e=>{e.preventDefault();run($('#ti').value);$('#ti').value=''};
+
+const lb=document.createElement('dialog');lb.innerHTML='<button type="button" class="cp x">Close</button><img alt=""><p class="mute"></p>';document.body.append(lb);
+lb.onclick=e=>{if(e.target===lb||e.target.classList.contains('x'))lb.close()};
+const addCert=c=>{const b=document.createElement('button');b.type='button';b.className='cert';
+ const t=document.createElement('b');t.textContent=c.t;const m=document.createElement('span');m.className='mute';m.textContent=c.o+', '+c.n;b.append(t,m);
+ b.onclick=()=>{const i=lb.querySelector('img');i.src=c.f;i.alt='Certificate: '+c.t;lb.querySelector('p').textContent=c.t+', '+c.o;lb.showModal()};
+ $('#certs').append(b)};
+fetch('certs.json').then(r=>r.json()).then(a=>a.forEach(addCert)).catch(()=>{});
+boot();stats();
 </script></body></html>
