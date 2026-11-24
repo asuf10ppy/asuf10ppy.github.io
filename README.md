@@ -24,3 +24,9 @@ Upload `admin.html`, `certs.json`, and the new `index.html` (it now reads certif
 Create the token once: GitHub > Settings > Developer settings > Personal access tokens > Fine-grained tokens > Generate new token. Repository access: **Only select repositories** > `asuf10ppy.github.io`. Permissions > Repository permissions > **Contents: Read and write**. Expiration: 90 days. Paste it into the admin page. Turn on two-factor authentication on your GitHub account.
 
 It edits skills, club contributions and certificates (with image upload), plus raw JSON for those three files. Changes go live about a minute after you press Save.
+
+## Round 1: project pages, animations (new)
+
+Upload: `index.html` (replace), `project.html`, `project.js`, `projects.json`, `motion.css`, `motion.js`, and the updated `ecell.html`, `genesys.html`, `cicada.html`, `admin.html`. **Delete `projects.js` from the repo** (projects now live in `projects.json`).
+
+**Add a YouTube video to a project:** open `projects.json`, find the project, and put the link inside its `"videos": []` list, for example `"videos": ["https://youtu.be/XXXXXXXXXXX"]`. Add a repo or other link with `"links": [{"text": "GitHub repo", "url": "https://github.com/..."}]`.

@@ -27,7 +27,7 @@ input[type=text],input[type=password]{width:340px}textarea{width:100%;min-height
 <div class="card"><h3>Add a certificate</h3><div class="row"><input type="text" id="ct" placeholder="Title" aria-label="Title"><input type="text" id="co" placeholder="Issuer, date" aria-label="Issuer and date"></div>
 <div class="row"><input type="text" id="cm" placeholder="Note, e.g. 1st prize" aria-label="Note"><input type="file" id="cf" accept="image/*" aria-label="Certificate image"><button class="btn" id="cadd" type="button">Upload and add</button></div></div>
 <div class="row"><button class="btn" id="csv" type="button">Save certificates list</button></div></section>
-<section id="t-raw" hidden><h2>raw-json</h2><div class="row"><select id="rf" aria-label="File"><option>skills.json</option><option>clubs.json</option><option>certs.json</option></select><button class="btn" id="rs" type="button">Save</button></div><textarea id="rt" spellcheck="false" aria-label="JSON"></textarea></section>
+<section id="t-raw" hidden><h2>raw-json</h2><div class="row"><select id="rf" aria-label="File"><option>skills.json</option><option>clubs.json</option><option>certs.json</option><option>projects.json</option></select><button class="btn" id="rs" type="button">Save</button></div><textarea id="rt" spellcheck="false" aria-label="JSON"></textarea></section>
 </div><div id="msg" role="status">Not signed in.</div></main><script>
 const REPO='asuf10ppy/asuf10ppy.github.io',BR='main',API='https://api.github.com/repos/'+REPO+'/contents/';
 const $=s=>document.querySelector(s),mk=(t,x,c)=>{const e=document.createElement(t);if(x)e.textContent=x;if(c)e.className=c;return e};

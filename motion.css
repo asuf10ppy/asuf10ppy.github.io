@@ -1,0 +1,20 @@
+@view-transition{navigation:auto}
+@media(prefers-reduced-motion:no-preference){
+html{scroll-behavior:smooth}
+body{animation:fi .6s ease both}@keyframes fi{from{opacity:0}}
+.term{animation:glow 6s ease-in-out infinite}@keyframes glow{50%{box-shadow:0 0 60px rgba(61,255,138,.15)}}
+main a:not(.card):not(.btn){background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s ease}
+main a:not(.card):not(.btn):hover{background-size:100% 1px;text-decoration:none}
+.card,.cert{transition:opacity .6s ease,transform .6s ease,border-color .25s ease,box-shadow .25s ease}
+.rv h2{opacity:0;transition:opacity .6s ease}.rv.in h2{opacity:1}
+.rv .card,.rv .cert,.rv li{opacity:0;transform:translateY(14px)}
+.rv.in .card,.rv.in .cert,.rv.in li{opacity:1;transform:none}
+.rv.in .card:hover,.rv.in .cert:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(61,255,138,.08);transition-delay:0s}
+.rv.in .card:nth-child(2),.rv.in .cert:nth-child(2),.rv.in li:nth-child(2){transition-delay:0.07s}
+.rv.in .card:nth-child(3),.rv.in .cert:nth-child(3),.rv.in li:nth-child(3){transition-delay:0.14s}
+.rv.in .card:nth-child(4),.rv.in .cert:nth-child(4),.rv.in li:nth-child(4){transition-delay:0.21s}
+.rv.in .card:nth-child(5),.rv.in .cert:nth-child(5),.rv.in li:nth-child(5){transition-delay:0.28s}
+.rv.in .card:nth-child(6),.rv.in .cert:nth-child(6),.rv.in li:nth-child(6){transition-delay:0.35s}
+.rv.in .card:nth-child(7),.rv.in .cert:nth-child(7),.rv.in li:nth-child(7){transition-delay:0.42s}
+.w{stroke-dasharray:1;stroke-dashoffset:1;animation:dr 1.6s .3s ease forwards}@keyframes dr{to{stroke-dashoffset:0}}
+}

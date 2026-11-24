@@ -59,7 +59,7 @@ pre{background:#050c09;border:1px solid var(--line);border-radius:4px;padding:12
 .cp{font:12px var(--mono);background:transparent;color:var(--g);border:1px solid var(--line);border-radius:3px;padding:1px 10px;cursor:pointer;margin-left:auto}.cp:hover{border-color:var(--g)}
 .cert{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:10px;color:var(--text);font:inherit;cursor:pointer}.cert:hover{border-color:var(--g)}
 dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:12px;max-width:min(94vw,1100px);margin:auto}dialog::backdrop{background:rgba(0,0,0,.82)}dialog img{max-width:100%;max-height:78vh;display:block;margin:10px auto}
-</style></head>
+</style><link rel="stylesheet" href="motion.css"><script src="motion.js" defer></script></head>
 <body><main>
 <header class="hero">
  <div class="term"><div class="bar"><i></i><i></i><i></i></div><div class="tb">
@@ -87,7 +87,7 @@ dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);bo
 </section>
 
 <section><h2>projects</h2>
- <p class="mute" style="margin:-8px 0 16px">Wiring diagrams and code are reference designs written from the project descriptions. Pins and parts may differ from the original builds.</p>
+ <p class="mute" style="margin:-8px 0 16px">Open a project for its circuit, code and details. Diagrams and code are reference designs written from the project descriptions.</p>
  <div class="grid g2" id="projects"></div>
 </section>
 
@@ -120,7 +120,6 @@ dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);bo
 </section>
 <footer class="mute">Stats refresh daily. Last update: <span id="upd">not yet</span></footer>
 </main>
-<script src="projects.js"></script>
 <script>
 document.documentElement.classList.add('js');
 const $=s=>document.querySelector(s),rm=matchMedia('(prefers-reduced-motion:reduce)').matches,sleep=ms=>new Promise(r=>setTimeout(r,ms));
@@ -171,30 +170,18 @@ async function stats(){
 }
 let S={},SKILLS={};
 const A=(t,h)=>{const a=document.createElement('a');a.textContent=t;a.href=h;return a};
-function diagram(d){
- const X=[10,270,540],W=[130,140,130],R=22,P={},cy=[10,10,10];let g='',w='';
- d.parts.forEach((p,k)=>{
-  const c=p.c,isL=s=>c==2||s[0]=='<',nl=p.pins.filter(isL).length,h=Math.max(nl,p.pins.length-nl,1)*R+30,y=cy[c];cy[c]+=h+18;
-  g+=`<rect class="pt" x="${X[c]}" y="${y}" width="${W[c]}" height="${h}" rx="4"/><text class="pn" x="${X[c]+W[c]/2}" y="${y+17}" text-anchor="middle">${p.n}</text>`;
-  let a=0,b=0;
-  p.pins.forEach(s=>{const L=isL(s),i=L?a++:b++,x=L?X[c]:X[c]+W[c],yy=y+36+i*R;P[k+'|'+s]=[x,yy];
-   g+=`<circle class="dot" cx="${x}" cy="${yy}" r="3.5"/><text class="pl" x="${x+(L?8:-8)}" y="${yy+4}" text-anchor="${L?'start':'end'}">${s.replace('<','')}</text>`});
- });
- d.wires.forEach((e,i)=>{const a=P[e[0]+'|'+e[1]],b=P[e[2]+'|'+e[3]],m=a[0]+(b[0]-a[0])*(.3+.13*(i%4));
-  w+=`<path class="w ${e[4]}" d="M${a[0]} ${a[1]}H${m}V${b[1]}H${b[0]}"/>`});
- return `<svg viewBox="0 0 680 ${Math.max(...cy)}" role="img" aria-label="Wiring diagram">${w}${g}</svg>`;
-}
+let PROJECTS=[];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function renderProjects(){
  const box=$('#projects');
  PROJECTS.forEach((p,i)=>{
   const a=document.createElement('article');a.className='card'+(i?'':' wide');a.id=p.id;
-  a.innerHTML=`<h3>${p.title}</h3><div class="mute">${p.date}</div><p>${p.desc}</p>${p.next?`<div class="next">${p.next}</div>`:''}<div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join('')}<button class="cp" type="button">Share</button></div><details><summary>Circuit diagram</summary><div class="dg">${diagram(p.d)}</div><p class="mute">${p.note}</p></details><details><summary>Reference code (${p.file})</summary><pre><code></code></pre></details>`;
-  a.querySelector('code').textContent=p.code;
-  a.querySelector('.cp').onclick=async e=>{const b=e.currentTarget,m=await shareLink(location.origin+location.pathname+'#'+p.id);b.textContent=m;setTimeout(()=>b.textContent='Share',2200)};
+  a.innerHTML=`<h3>${esc(p.title)}</h3><div class="mute">${esc(p.date)}</div><p>${esc(p.desc)}</p>${p.next?`<div class="next">${esc(p.next)}</div>`:''}<div class="tags">${p.tags.map(t=>`<span>${esc(t)}</span>`).join('')}<button class="cp" type="button">Share</button></div><p class="links" style="margin-top:12px"><a href="project.html?p=${encodeURIComponent(p.id)}">Open project</a></p>`;
+  a.querySelector('.cp').onclick=async e=>{const b=e.currentTarget,m=await shareLink(new URL('project.html?p='+p.id,location.href).href);b.textContent=m;setTimeout(()=>b.textContent='Share',2200)};
   box.append(a);
  });
 }
-if(typeof PROJECTS!=='undefined')renderProjects();
+fetch('projects.json').then(r=>r.json()).then(a=>{PROJECTS=a;renderProjects()}).catch(()=>{});
 fetch('skills.json').then(r=>r.json()).then(k=>{SKILLS=k;const b=$('#skills');
  Object.entries(k).forEach(([g,v])=>{const c=document.createElement('div');c.className='card';const h=document.createElement('h3');h.textContent=g;const t=document.createElement('div');t.className='tags';
   v.forEach(s=>{const e=document.createElement('span');e.textContent=s;t.append(e)});c.append(h,t);b.append(c)})}).catch(()=>{});
@@ -208,7 +195,7 @@ const ABOUT='Freshman CSE at IIIT Bangalore. I learn by building: ESP32 and ESP8
 const CM={
  help:()=>['Commands: help, about, projects, skills, stats, videos, resume, contact, repos, share, clear'],
  about:()=>[ABOUT],
- projects:()=>typeof PROJECTS==='undefined'?['No projects loaded.']:PROJECTS.map(p=>[A(p.title,'#'+p.id),' ('+p.date+')']),
+ projects:()=>typeof PROJECTS==='undefined'?['No projects loaded.']:PROJECTS.map(p=>[A(p.title,'project.html?p='+p.id),' ('+p.date+')']),
  skills:()=>Object.keys(SKILLS).length?Object.entries(SKILLS).map(([k,v])=>k+': '+v.join(', ')):['Skills not loaded yet.'],
  stats:()=>['LeetCode solved: '+(S.leetcode?.solved??'n/a'),'Codeforces rating: '+(S.codeforces?.rating??'unrated'),'TryHackMe rank: '+(S.tryhackme?.rank??'n/a')],
  videos:()=>(S.youtube||[]).length?S.youtube.slice(0,3).map(y=>[A(y.title,'https://www.youtube.com/watch?v='+y.id)]):['No videos loaded yet.'],
