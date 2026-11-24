@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Signal archive</title><meta name="description" content="Archive recording with captions."><meta property="og:title" content="Signal archive"><meta property="og:description" content="Archive recording with captions."><meta property="og:image" content="https://asuf10ppy.github.io/og-image.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../club.css"><style>.btn{display:inline-block;font:700 14px var(--mono);background:transparent;color:var(--g);border:1px solid var(--g);border-radius:3px;padding:8px 14px;cursor:pointer}.btn:hover{background:rgba(61,255,138,.1);text-decoration:none}
+input[type=text]{width:100%;max-width:400px;background:var(--panel);border:1px solid var(--line);border-radius:3px;color:var(--text);font:14px var(--mono);padding:9px 12px}
+#r{margin-top:10px;font:14px var(--mono)}#r.ok{color:var(--g)}#r.bad{color:#ff6b6b}
+pre{background:#050c09;border:1px solid var(--line);border-radius:4px;padding:12px;overflow-x:auto;font:12px/1.5 var(--mono);margin:10px 0}ol{padding-left:22px}</style><meta name="robots" content="noindex"><link rel="icon" href="../favicon.svg" type="image/svg+xml"></head>
+<body><main>
+<h1>Signal archive</h1><p class="mute">Archive recording, 40:00. Captions are on.</p>
+<div class="card"><div id="cap" aria-live="polite" style="min-height:3em;font:16px var(--mono)">(no captions)</div>
+<input type="range" id="s" min="0" max="2400" value="0" style="width:100%;margin-top:14px" aria-label="Timeline">
+<div class="mute" style="margin-top:6px"><span id="t">00:00</span> / 40:00</div>
+<p style="margin-top:12px"><label>Go to <input type="text" id="g" placeholder="mm:ss" style="max-width:120px"></label></p></div>
+</main><script>
+const $=s=>document.querySelector(s),K="Cicada3301{e945029e9e0fe5cc}";
+const f=n=>String(Math.floor(n/60)).padStart(2,'0')+':'+String(n%60).padStart(2,'0');
+function at(n){n=Math.max(0,Math.min(2400,n|0));$('#s').value=n;$('#t').textContent=f(n);$('#cap').textContent=(n>=1981&&n<1985)?K:'(no captions)'}
+$('#s').oninput=e=>at(+e.target.value);
+$('#g').onchange=e=>{const m=e.target.value.match(/^(\d{1,2}):(\d{2})$/);if(m)at(+m[1]*60+ +m[2])};
+</script></body></html>

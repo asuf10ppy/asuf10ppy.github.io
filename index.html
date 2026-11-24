@@ -59,14 +59,16 @@ pre{background:#050c09;border:1px solid var(--line);border-radius:4px;padding:12
 .cp{font:12px var(--mono);background:transparent;color:var(--g);border:1px solid var(--line);border-radius:3px;padding:1px 10px;cursor:pointer;margin-left:auto}.cp:hover{border-color:var(--g)}
 .cert{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:12px 16px;margin-bottom:10px;color:var(--text);font:inherit;cursor:pointer}.cert:hover{border-color:var(--g)}
 dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:12px;max-width:min(94vw,1100px);margin:auto}dialog::backdrop{background:rgba(0,0,0,.82)}dialog img{max-width:100%;max-height:78vh;display:block;margin:10px auto}
-</style><link rel="stylesheet" href="motion.css"><script src="motion.js" defer></script></head>
+.open{font-weight:700}.open .od{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--g);margin-right:8px;animation:pu 2s ease-in-out infinite}@keyframes pu{50%{opacity:.3}}@media(prefers-reduced-motion:reduce){.open .od{animation:none}}
+.fld{margin-top:10px;display:flex;flex-direction:column;gap:4px}.fld label{font-size:.9rem;color:var(--mute)}.fld input,.fld textarea{background:var(--bg);border:1px solid var(--line);border-radius:3px;color:var(--text);font:15px var(--sans);padding:8px 10px;width:100%}
+</style><link rel="stylesheet" href="motion.css"><script src="motion.js" defer></script><link rel="icon" href="favicon.svg" type="image/svg+xml"><script src="analytics.js" defer></script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Aditya S Uranakar", "url": "https://asuf10ppy.github.io/", "jobTitle": "Computer Science student", "affiliation": {"@type": "CollegeOrUniversity", "name": "International Institute of Information Technology Bangalore"}, "knowsAbout": ["Embedded systems", "IoT", "ESP32", "Arduino", "Operating systems", "Low-level security"], "sameAs": ["https://www.linkedin.com/in/asuf10ppy/", "https://github.com/asuf10ppy", "https://www.youtube.com/@asuf10ppy"]}</script></head>
 <body><main>
 <header class="hero">
  <div class="term"><div class="bar"><i></i><i></i><i></i></div><div class="tb">
   <div class="ln"><span class="p">$</span> <span class="cmd">whoami</span></div>
   <div class="out"><h1 class="name">Aditya S Uranakar</h1></div>
   <div class="ln"><span class="p">$</span> <span class="cmd">cat focus.txt</span></div>
-  <div class="out">Freshman CSE at IIIT Bangalore<br>Embedded systems, OS internals, low-level security<br>C, ESP32, IoT</div>
+  <div class="out">Freshman CSE at IIIT Bangalore<br>Embedded systems, OS internals, low-level security<br>C, ESP32, IoT<br><a class="open" href="mailto:adityaurank410@gmail.com?subject=Internship%20or%20research"><span class="od"></span>open to internships and research</a></div>
   <div class="ln"><span class="p">$</span> <span class="cmd">ls links</span></div>
   <div class="out links"><a href="https://www.linkedin.com/in/asuf10ppy/">linkedin</a><a href="https://github.com/asuf10ppy">github</a><a href="https://www.youtube.com/@asuf10ppy">youtube</a><a href="resume.pdf">resume</a><a href="mailto:adityaurank410@gmail.com">email</a><a href="#" id="share">share</a></div>
   <div class="live" id="live"><div class="chips" id="chips"></div><div id="tout"></div><form id="tf" autocomplete="off"><span class="p">$</span><input id="ti" aria-label="Type a command" placeholder="type a command, try help" autocapitalize="off" spellcheck="false"></form></div>
@@ -117,6 +119,12 @@ dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);bo
 <section><h2>contact</h2>
  <p>Want to build something or talk internships? <a href="mailto:adityaurank410@gmail.com">adityaurank410@gmail.com</a></p>
  <p class="links" style="margin-top:8px"><a href="https://www.linkedin.com/in/asuf10ppy/">LinkedIn</a><a href="https://github.com/asuf10ppy">GitHub</a><a href="https://www.youtube.com/@asuf10ppy">YouTube</a><a href="resume.pdf">Resume (PDF)</a></p>
+<form id="cf" class="card" style="margin-top:18px;max-width:560px"><h3>Send a message</h3><p class="mute">It goes straight to my email.</p>
+<div class="fld"><label for="fn">Name</label><input id="fn" name="name" required autocomplete="name"></div>
+<div class="fld"><label for="fe">Email</label><input id="fe" name="email" type="email" required autocomplete="email"></div>
+<div class="fld"><label for="fm">Message</label><textarea id="fm" name="message" rows="5" required></textarea></div>
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+<p style="margin-top:12px"><button class="cp" type="submit" id="fs" style="margin-left:0">Send</button> <span id="fr" class="mute" role="status"></span></p></form>
 </section>
 <footer class="mute">Stats refresh daily. Last update: <span id="upd">not yet</span></footer>
 </main>
@@ -193,7 +201,7 @@ async function shareLink(url=location.origin+location.pathname){
 $('#share').onclick=async e=>{e.preventDefault();const l=e.currentTarget,m=await shareLink();l.textContent=m;setTimeout(()=>l.textContent='share',2200)};
 const ABOUT='Freshman CSE at IIIT Bangalore. I learn by building: ESP32 and ESP8266 projects, Arduino robots, and now OS and kernel security through Gene/sys. Open to internships and research in embedded and systems security.';
 const CM={
- help:()=>['Commands: help, about, projects, skills, stats, videos, resume, contact, repos, share, clear'],
+ help:()=>['Commands: help, about, projects, skills, stats, videos, resume, whoami, ls, contact, repos, share, clear'],
  about:()=>[ABOUT],
  projects:()=>typeof PROJECTS==='undefined'?['No projects loaded.']:PROJECTS.map(p=>[A(p.title,'project.html?p='+p.id),' ('+p.date+')']),
  skills:()=>Object.keys(SKILLS).length?Object.entries(SKILLS).map(([k,v])=>k+': '+v.join(', ')):['Skills not loaded yet.'],
@@ -201,9 +209,17 @@ const CM={
  videos:()=>(S.youtube||[]).length?S.youtube.slice(0,3).map(y=>[A(y.title,'https://www.youtube.com/watch?v='+y.id)]):['No videos loaded yet.'],
  resume:()=>[A('Open resume.pdf','resume.pdf')],
  contact:()=>[[A('adityaurank410@gmail.com','mailto:adityaurank410@gmail.com')],[A('LinkedIn','https://www.linkedin.com/in/asuf10ppy/'),' ',A('GitHub','https://github.com/asuf10ppy'),' ',A('YouTube','https://www.youtube.com/@asuf10ppy')]],
+ whoami:()=>['Aditya S Uranakar','Freshman CSE at IIIT Bangalore','Embedded systems, OS internals, low-level security','Open to internships and research'],
+ ls:()=>['practice-log  latest-videos  projects  repos  skills  about  involvement  certificates  contact'],
  repos:()=>(S.github||[]).length?S.github.map(r=>[A(r.name,r.url),r.description?' - '+r.description:'']):['No repos loaded yet.'],
  share:()=>{shareLink().then(m=>put(m));return []}
 };
+const EG={
+ coffee:()=>['418: I am a teapot. Try an ESP32 with a relay instead.'],
+ exit:()=>['There is no escape. Type help.'],
+ date:()=>[new Date().toString()],
+ hello:()=>['Hello. Type help to see what I can do.'],
+ 'sudo rm -rf /':()=>['Nice try. Permission denied, and this site is read-only anyway.']};
 function put(...x){const d=document.createElement('div');d.className='o';x.forEach(n=>d.append(n));$('#tout').append(d)}
 let pendingPw=false,fails=0;
 async function sudo(pw){
@@ -222,10 +238,15 @@ function run(c){
  c=raw.toLowerCase();if(!c)return;
  if(c=='clear'){$('#tout').innerHTML='';return}
  const p=document.createElement('span');p.className='p';p.textContent='$ ';put(p,c);
- (CM[c]?CM[c]():['command not found: '+c+'. Try help.']).forEach(l=>put(...[].concat(l)));
+ ((CM[c]||EG[c])?(CM[c]||EG[c])():['command not found: '+c+'. Try help.']).forEach(l=>put(...[].concat(l)));
 }
 Object.keys(CM).forEach(k=>{const b=document.createElement('button');b.type='button';b.textContent=k;b.onclick=()=>run(k);$('#chips').append(b)});
-$('#tf').onsubmit=e=>{e.preventDefault();run($('#ti').value);$('#ti').value=''};
+const HIST=[];let hi=0;
+$('#tf').onsubmit=e=>{e.preventDefault();const t=$('#ti'),v=t.value;if(v.trim()&&t.type!=='password'&&!/^sudo\s+adminlogin/i.test(v)){HIST.push(v);hi=HIST.length}run(v);t.value=''};
+$('#ti').addEventListener('keydown',e=>{const i=e.target;if(i.type==='password')return;
+ if(e.key==='ArrowUp'&&HIST.length){e.preventDefault();hi=Math.max(0,hi-1);i.value=HIST[hi]||''}
+ else if(e.key==='ArrowDown'&&HIST.length){e.preventDefault();hi=Math.min(HIST.length,hi+1);i.value=HIST[hi]||''}
+ else if(e.key==='Tab'){const v=i.value.trim().toLowerCase();if(!v)return;const m=Object.keys(CM).filter(k=>k.startsWith(v));if(m.length==1){e.preventDefault();i.value=m[0]}}});
 
 const lb=document.createElement('dialog');lb.innerHTML='<button type="button" class="cp x">Close</button><img alt=""><p class="mute"></p>';document.body.append(lb);
 lb.onclick=e=>{if(e.target===lb||e.target.classList.contains('x'))lb.close()};
@@ -234,5 +255,11 @@ const addCert=c=>{const b=document.createElement('button');b.type='button';b.cla
  b.onclick=()=>{const i=lb.querySelector('img');i.src=c.f;i.alt='Certificate: '+c.t;lb.querySelector('p').textContent=c.t+', '+c.o;lb.showModal()};
  $('#certs').append(b)};
 fetch('certs.json').then(r=>r.json()).then(a=>a.forEach(addCert)).catch(()=>{});
+$('#cf').onsubmit=async e=>{e.preventDefault();const f=e.target,b=$('#fs'),r=$('#fr');b.disabled=true;r.textContent='Sending...';
+ try{const d=Object.fromEntries(new FormData(f));d._subject='Message from asuf10ppy.github.io';d._captcha='false';
+  const x=await fetch('https://formsubmit.co/ajax/adityaurank410@gmail.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)});
+  const j=await x.json().catch(()=>({}));if(!(x.ok&&(j.success===true||j.success==='true')))throw 0;r.textContent='Thanks, your message was sent.';f.reset()}
+ catch(err){r.textContent='Could not send. Please email me directly.';b.disabled=false;return}
+ setTimeout(()=>b.disabled=false,8000)};
 boot();stats();
 </script></body></html>
