@@ -10,7 +10,7 @@ pre{background:#050c09;border:1px solid var(--line);border-radius:4px;padding:12
 <a href="genesys.html">&larr; Back to Gene/sys</a>
 <h1>Cicada 3301: SURE MUN</h1>
 <div class="mute">A web version of a challenge I wrote for Gene/sys</div>
-<p style="margin-top:14px">Cicada 3301 was a campus-wide cyber-investigation event at IIIT Bangalore: solve a challenge, get a key, unlock the next one. This is a small replica of my challenge. The key here is new, not the one used at the event.</p>
+<p style="margin-top:14px">Cicada 3301 was a campus-wide cyber-investigation event at IIIT Bangalore: solve a challenge, get a key, unlock the next one. This is a small replica of my challenge. The key hidden in this web version is new. The key from the event is accepted too.</p>
 <h2>the-brief</h2>
 <div class="card"><p>Don't trust the first thing the signal tells you, or the second, or the hundredth. It was built to repeat, and the repeating is not a mistake. Hours of broadcast, and one minute that matters.</p>
 <p style="margin-top:10px">Everyone remembers the number, and it is facing the wrong way. Some numbers in this story are real and some are bait. The only way out is through.</p>
@@ -39,10 +39,10 @@ dst.writeframes(src.readframes(src.getnframes()))
 dst.close()</code></pre>
 <button class="btn" id="pl" type="button">Play restored audio</button></div>
 </main><script>
-const $=s=>document.querySelector(s),HASH="708617d2b8daddcf23175fbee371aaae532069163a0b1753b856ae76595c1b99";
+const $=s=>document.querySelector(s),HASH=["708617d2b8daddcf23175fbee371aaae532069163a0b1753b856ae76595c1b99","cef43685cca0c00c364d959446fa5f5f482d47b324e4c037fd4a8ea5e90d375b"];
 async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
 $('#f').onsubmit=async e=>{e.preventDefault();const r=$('#r');
- try{const ok=(await sha($('#k').value.trim().toLowerCase()))===HASH;r.className=ok?'ok':'bad';r.textContent=ok?'Correct. You solved SURE MUN.':'Not the key. Keep looking.'}
+ try{const ok=HASH.includes(await sha($('#k').value.trim().toLowerCase()));r.className=ok?'ok':'bad';r.textContent=ok?'Correct. You solved SURE MUN.':'Not the key. Keep looking.'}
  catch(x){r.className='bad';r.textContent='Checking needs a secure (https) page.'}};
 $('#hs').onclick=e=>{const s=$('#sol'),o=s.hidden;s.hidden=!o;e.target.setAttribute('aria-expanded',o)};
 let ctx,src;

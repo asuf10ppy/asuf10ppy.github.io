@@ -205,8 +205,21 @@ const CM={
  share:()=>{shareLink().then(m=>put(m));return []}
 };
 function put(...x){const d=document.createElement('div');d.className='o';x.forEach(n=>d.append(n));$('#tout').append(d)}
+let pendingPw=false,fails=0;
+async function sudo(pw){
+ if(!window.Admin)await new Promise(ok=>{const t=document.createElement('script');t.src='admin.js';t.onload=ok;t.onerror=ok;document.head.append(t)});
+ if(!window.Admin){put('sudo: admin module not found');return}
+ if(await Admin.login(pw)=='ok'){fails=0;put('Access granted. Opening the admin panel.')}
+ else{fails++;await new Promise(z=>setTimeout(z,Math.min(fails*1500,6000)));put('sudo: authentication failed')}
+}
 function run(c){
- c=c.trim().toLowerCase();if(!c)return;
+ const raw=c.trim();
+ if(pendingPw){pendingPw=false;$('#ti').type='text';$('#ti').placeholder='type a command, try help';if(raw){put('[sudo] password: ********');sudo(raw)}return}
+ const sm=raw.match(/^sudo\s+adminlogin(?:\s+(\S+))?$/i);
+ if(sm){const p0=document.createElement('span');p0.className='p';p0.textContent='$ ';
+  if(sm[1]){put(p0,'sudo adminlogin ********');sudo(sm[1])}else{put(p0,'sudo adminlogin');put('[sudo] password for admin:');pendingPw=true;$('#ti').type='password';$('#ti').placeholder='password'}
+  return}
+ c=raw.toLowerCase();if(!c)return;
  if(c=='clear'){$('#tout').innerHTML='';return}
  const p=document.createElement('span');p.className='p';p.textContent='$ ';put(p,c);
  (CM[c]?CM[c]():['command not found: '+c+'. Try help.']).forEach(l=>put(...[].concat(l)));
