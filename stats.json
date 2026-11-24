@@ -1,8 +1,54 @@
 {
-  "updated": null,
-  "leetcode": {"solved": null, "easy": null, "medium": null, "hard": null},
-  "codeforces": {"rating": null, "maxRating": null, "rank": "", "solved": null},
-  "tryhackme": {"rank": null, "rooms": null, "badges": null},
-  "youtube": [],
-  "override": {}
+  "updated": "2026-11-24T05:59:35+00:00",
+  "leetcode": {
+    "solved": 179,
+    "easy": 151,
+    "medium": 24,
+    "hard": 4
+  },
+  "codeforces": {
+    "rating": null,
+    "maxRating": null,
+    "rank": "",
+    "solved": null
+  },
+  "tryhackme": {
+    "rank": null,
+    "rooms": null,
+    "badges": null
+  },
+  "youtube": [
+    {
+      "id": "6KNZq05jD20",
+      "title": "Built a Live Lyrics Display with an ESP8266",
+      "published": "2026-10-18"
+    },
+    {
+      "id": "4CSs1X4CqaU",
+      "title": "Smart Irrigation System | Automated Plant Watering Project | Electronics & IoT",
+      "published": "2026-09-30"
+    },
+    {
+      "id": "HnyU7gQywCI",
+      "title": "Presenting My Project to the Judges |IETE Bangalore ECE Summer Camp",
+      "published": "2026-09-30"
+    }
+  ],
+  "override": {},
+  "github": [
+    {
+      "name": "LeetForces",
+      "description": "my leetcode submissions :)",
+      "language": "",
+      "stars": 0,
+      "url": "https://github.com/asuf10ppy/LeetForces"
+    },
+    {
+      "name": "campus-placement-portal",
+      "description": "A FastAPI-based Campus Placement Portal API with role-based access (officer, recruiter, student), placement eligibility rules, and JSON file persistence.",
+      "language": "Python",
+      "stars": 0,
+      "url": "https://github.com/asuf10ppy/campus-placement-portal"
+    }
+  ]
 }
