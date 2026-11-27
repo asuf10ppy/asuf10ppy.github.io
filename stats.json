@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-26T10:50:18+00:00",
+  "updated": "2026-11-27T10:48:48+00:00",
   "leetcode": {
     "solved": 179,
     "easy": 151,
@@ -37,18 +37,18 @@
   "override": {},
   "github": [
     {
-      "name": "LeetForces",
-      "description": "my leetcode submissions :)",
-      "language": "",
-      "stars": 0,
-      "url": "https://github.com/asuf10ppy/LeetForces"
-    },
-    {
       "name": "campus-placement-portal",
       "description": "A FastAPI-based Campus Placement Portal API with role-based access (officer, recruiter, student), placement eligibility rules, and JSON file persistence.",
       "language": "Python",
       "stars": 0,
       "url": "https://github.com/asuf10ppy/campus-placement-portal"
+    },
+    {
+      "name": "LeetForces",
+      "description": "my leetcode submissions :)",
+      "language": "",
+      "stars": 0,
+      "url": "https://github.com/asuf10ppy/LeetForces"
     }
   ]
 }
